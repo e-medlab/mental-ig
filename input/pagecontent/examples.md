@@ -32,31 +32,31 @@ score, and her PHQ-9 procedure records that this happened.
 
 Questionnaire: [PHQ-9](Questionnaire-phq-9.html). Procedure code: SNOMED CT `715252007` *Depression screening using PHQ-9 (Patient Health Questionnaire 9) score* and LOINC `44249-1` *PHQ-9 quick depression assessment panel [Reported.PHQ]*.
 
-| Patient | Answers | Assessment | Result |
-|---|---|---|---|
-| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-mari.html) | [Procedure](Procedure-phq-9-procedure-mari.html) | PHQ-9 total score 3 of 27: minimal depressive symptoms |
-| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-juhan.html) | [Procedure](Procedure-phq-9-procedure-juhan.html) | PHQ-9 total score 12 of 27: moderate depressive symptoms |
-| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-kati.html) | [Procedure](Procedure-phq-9-procedure-kati.html) | PHQ-9 total score 22 of 27: severe depressive symptoms. Question 9 (thoughts of self-harm) answered 'More than half the days': the physician assessed suicide risk during the same visit |
+| Patient | Answers | Assessment | Result | Try it |
+|---|---|---|---|---|
+| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-mari.html) | [Procedure](Procedure-phq-9-procedure-mari.html) | PHQ-9 total score 3 of 27: minimal depressive symptoms | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=phq-9&r=mari) |
+| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-juhan.html) | [Procedure](Procedure-phq-9-procedure-juhan.html) | PHQ-9 total score 12 of 27: moderate depressive symptoms | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=phq-9&r=juhan) |
+| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-phq-9-response-kati.html) | [Procedure](Procedure-phq-9-procedure-kati.html) | PHQ-9 total score 22 of 27: severe depressive symptoms. Question 9 (thoughts of self-harm) answered 'More than half the days': the physician assessed suicide risk during the same visit | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=phq-9&r=kati) |
 
 #### GAD-7
 
 Questionnaire: [GAD-7](Questionnaire-gad-7.html). Procedure code: SNOMED CT `445598007` *Assessment using Generalized Anxiety Disorder 7 item score* and LOINC `69737-5` *Generalized anxiety disorder 7 item (GAD-7)*.
 
-| Patient | Answers | Assessment | Result |
-|---|---|---|---|
-| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-mari.html) | [Procedure](Procedure-gad-7-procedure-mari.html) | GAD-7 total score 2 of 21: minimal anxiety symptoms |
-| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-juhan.html) | [Procedure](Procedure-gad-7-procedure-juhan.html) | GAD-7 total score 11 of 21: moderate anxiety symptoms |
-| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-kati.html) | [Procedure](Procedure-gad-7-procedure-kati.html) | GAD-7 total score 17 of 21: severe anxiety symptoms |
+| Patient | Answers | Assessment | Result | Try it |
+|---|---|---|---|---|
+| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-mari.html) | [Procedure](Procedure-gad-7-procedure-mari.html) | GAD-7 total score 2 of 21: minimal anxiety symptoms | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=gad-7&r=mari) |
+| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-juhan.html) | [Procedure](Procedure-gad-7-procedure-juhan.html) | GAD-7 total score 11 of 21: moderate anxiety symptoms | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=gad-7&r=juhan) |
+| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-gad-7-response-kati.html) | [Procedure](Procedure-gad-7-procedure-kati.html) | GAD-7 total score 17 of 21: severe anxiety symptoms | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=gad-7&r=kati) |
 
 #### WHO-5
 
 Questionnaire: [WHO-5](Questionnaire-who-5.html). Procedure code: SNOMED CT `1417808008` *Assessment using World Health Organization-Five Well-Being Index questionnaire* and WHO-5 (this guide) `who-5` *WHO-5 Well-Being Index questionnaire*.
 
-| Patient | Answers | Assessment | Result |
-|---|---|---|---|
-| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-mari.html) | [Procedure](Procedure-who-5-procedure-mari.html) | WHO-5 raw score 20 of 25, well-being index 80 of 100: adequate well-being |
-| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-juhan.html) | [Procedure](Procedure-who-5-procedure-juhan.html) | WHO-5 raw score 11 of 25, well-being index 44 of 100: poor well-being; screened for depression with PHQ-9 at the same visit |
-| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-kati.html) | [Procedure](Procedure-who-5-procedure-kati.html) | WHO-5 raw score 5 of 25, well-being index 20 of 100: poor well-being; screened for depression with PHQ-9 at the same visit |
+| Patient | Answers | Assessment | Result | Try it |
+|---|---|---|---|---|
+| Mari Maasikas | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-mari.html) | [Procedure](Procedure-who-5-procedure-mari.html) | WHO-5 raw score 20 of 25, well-being index 80 of 100: adequate well-being | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=who-5&r=mari) |
+| Juhan Juurikas | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-juhan.html) | [Procedure](Procedure-who-5-procedure-juhan.html) | WHO-5 raw score 11 of 25, well-being index 44 of 100: poor well-being; screened for depression with PHQ-9 at the same visit | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=who-5&r=juhan) |
+| Kati Karu | [QuestionnaireResponse](QuestionnaireResponse-who-5-response-kati.html) | [Procedure](Procedure-who-5-procedure-kati.html) | WHO-5 raw score 5 of 25, well-being index 20 of 100: poor well-being; screened for depression with PHQ-9 at the same visit | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q=who-5&r=kati) |
 
 ### Reading one example step by step
 

@@ -1,7 +1,8 @@
 name: Publish IG to GitHub Pages
 
 # Builds the guide with the same pinned IG Publisher as ./build.sh and publishes output/ to
-# https://e-medlab.github.io/mental-ig/. A build with QA errors is not published.
+# https://e-medlab.github.io/mental-ig/, with the questionnaire viewer at /viewer/. A build with QA
+# errors is not published.
 
 on:
   push:
@@ -40,6 +41,23 @@ jobs:
           errs=$(python3 -c "import json; print(json.load(open('output/qa.json'))['errs'])")
           echo "QA errors: $errs (details in output/qa.html)"
           [ "$errs" = "0" ]
+
+      # The questionnaire viewer (viewer/) is published inside the guide at /mental-ig/viewer/. Its
+      # HelexEMR renderer packages come from GitHub Packages, which needs a token even to read.
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: viewer/package-lock.json
+
+      - name: Build the questionnaire viewer
+        working-directory: viewer
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.HELEX_PACKAGES_TOKEN }}
+        run: |
+          npm ci
+          npm run build
+          cp -R dist ../output/viewer
 
       - uses: actions/configure-pages@v5
 

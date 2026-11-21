@@ -93,10 +93,16 @@ as one FHIR package, [package.tgz](package.tgz), for loading into a FHIR server 
 
 ### Try a questionnaire
 
-To see a questionnaire as a patient would, download its JSON — for example
-[Questionnaire-phq-9.json](Questionnaire-phq-9.json) — and open it in a free form renderer such as the
-[NLM LHC-Forms demo](https://lhcforms.nlm.nih.gov/lhcforms) (*Load from file*). The total score fills in
-as you answer.
+**[Try the questionnaires](https://e-medlab.github.io/mental-ig/viewer/)** opens a small form app that shows each questionnaire the way a patient
+would see it, using the same form renderer as HelexEMR. Choose a questionnaire and a language (English,
+Estonian, Russian or Ukrainian), answer the questions and watch the score update, or open one of the
+worked examples with its answers filled in. When you press *Submit*, the app shows the FHIR
+QuestionnaireResponse it produces, ready to copy or download. Everything runs in your browser; nothing is
+sent anywhere.
+
+The questionnaire files also open in other form tools, for example
+[Questionnaire-phq-9.json](Questionnaire-phq-9.json) in the
+[NLM LHC-Forms demo](https://lhcforms.nlm.nih.gov/lhcforms) (*Load from file*).
 
 ### Status and licences
 

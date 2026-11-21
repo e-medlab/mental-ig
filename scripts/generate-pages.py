@@ -60,11 +60,11 @@ for i in T:
     names = " and ".join(f"{system_name(x['system'])} `{x['code']}` *{x['display']}*"
                          for x in codings)
     out.append(f"#### {T[i]}\n\nQuestionnaire: [{T[i]}](Questionnaire-{i}.html). Procedure code: {names}.\n\n"
-               "| Patient | Answers | Assessment | Result |\n|---|---|---|---|\n")
+               "| Patient | Answers | Assessment | Result | Try it |\n|---|---|---|---|---|\n")
     for k, n in people.items():
         outcome = load(f"Procedure-{i}-procedure-{k}.json")["outcome"]["text"]
         out.append(f"| {n} | [QuestionnaireResponse](QuestionnaireResponse-{i}-response-{k}.html) | "
-                   f"[Procedure](Procedure-{i}-procedure-{k}.html) | {outcome} |\n")
+                   f"[Procedure](Procedure-{i}-procedure-{k}.html) | {outcome} | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q={i}&r={k}) |\n")
     out.append("\n")
 out.append("""### Reading one example step by step
 

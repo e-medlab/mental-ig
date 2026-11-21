@@ -1,0 +1,41 @@
+html,
+body {
+  margin: 0;
+  background: #f5f7fa;
+}
+
+.page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+.control-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.side {
+  position: sticky;
+  top: 16px;
+}
+
+.missing-list {
+  margin: 0;
+  padding-left: 18px;
+}
+
+.json {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 16px;
+  border-radius: 8px;
+  font-size: 12.5px;
+  line-height: 1.5;
+  max-height: 70vh;
+  overflow: auto;
+  white-space: pre;
+}

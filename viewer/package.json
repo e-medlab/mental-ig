@@ -1,0 +1,71 @@
+{
+  "name": "mental-ig-viewer",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@ant-design/icons": "6.3.4",
+    "@helex/i18n": "npm:@helex-solutions/i18n@1.0.62",
+    "@helex/questionnaire-engine": "npm:@helex-solutions/questionnaire-engine@1.0.62",
+    "@helex/questionnaire-response": "npm:@helex-solutions/questionnaire-response@1.0.62",
+    "@helex/state": "npm:@helex-solutions/state@1.0.62",
+    "@helex/ui": "npm:@helex-solutions/ui@1.0.62",
+    "@reduxjs/toolkit": "2.14.0",
+    "@tanstack/query-persist-client-core": "5.107.1",
+    "@tanstack/react-query": "5.107.1",
+    "antd": "6.7.0",
+    "axios": "1.21.0",
+    "dayjs": "1.11.23",
+    "i18next": "26.7.2",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "react-i18next": "17.1.13",
+    "react-redux": "9.3.1",
+    "react-router-dom": "7.18.5"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.2.1",
+    "javascript-obfuscator": "5.10.0",
+    "typescript": "6.0.3",
+    "vite": "8.3.6"
+  },
+  "overrides": {
+    "@ant-design/cssinjs": "2.1.2",
+    "@babel/runtime": "7.29.13",
+    "@rc-component/collapse": {
+      "@babel/runtime": "8.1.0"
+    },
+    "@rc-component/drawer": "1.4.2",
+    "@rc-component/menu": "1.6.1",
+    "@rc-component/motion": "1.3.3",
+    "@rc-component/segmented": {
+      "@babel/runtime": "8.1.0"
+    },
+    "@rc-component/virtual-list": {
+      "@babel/runtime": "8.1.0"
+    },
+    "@rolldown/pluginutils": "1.0.1",
+    "@tybys/wasm-util": "0.10.4",
+    "@vercel/blob": "2.8.2",
+    "brace-expansion": "5.0.12",
+    "compute-scroll-into-view": "3.1.1",
+    "csstype": "3.2.3",
+    "follow-redirects": "1.16.2",
+    "graceful-fs": "4.2.11",
+    "immer": "11.2.9",
+    "libphonenumber-js": "1.13.15",
+    "postcss": "8.5.32",
+    "rolldown": "1.2.16",
+    "scroll-into-view-if-needed": "3.1.0",
+    "source-map-js": "1.2.2"
+  }
+}
