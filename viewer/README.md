@@ -45,3 +45,11 @@ cd /tmp/pages && python3 -m http.server 8000   # http://localhost:8000/mental-ig
   in the output.
 - Third-party versions are pinned exactly; `overrides` in `package.json` pin transitive packages to
   releases at least two weeks old at the time of writing.
+
+## Score labels and band texts
+
+`src/bands.ts` holds each score's bands with a label and a patient-facing interpretation in en / et / ru / uk
+(the score panel shows the patient text). The PHQ-9 and GAD-7 interpretations in en, et and ru and the WHO-5
+clinician texts in all four languages are HelexEMR's own wording from its questionnaire seeds. The Ukrainian
+PHQ-9 / GAD-7 interpretations, the WHO-5 patient texts, the band labels and the item-9 alert were translated
+for this viewer and have not been reviewed.

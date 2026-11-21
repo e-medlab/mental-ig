@@ -9,7 +9,7 @@ import {
   resolveTemplate,
 } from '@helex/questionnaire-response';
 import { ContentLocaleProvider } from '@helex/state';
-import { PHQ9_ITEM9, PHQ9_ITEM9_NOT_AT_ALL, type QuestionnaireId } from './bands';
+import { ITEM9_NOTICE, PHQ9_ITEM9, PHQ9_ITEM9_NOT_AT_ALL, withBandLanguage, type QuestionnaireId } from './bands';
 import {
   answersFromResponse,
   buildResponse,
@@ -135,8 +135,8 @@ export function App() {
 
   const qResponse = useMemo(() => buildQResponse(native?.items ?? [], answers), [native, answers]);
   const scores = useMemo(
-    () => (native ? computeScores(native.scores, native.items, answers, qResponse) : []),
-    [native, answers, qResponse],
+    () => (native ? computeScores(withBandLanguage(native.scores, qId, lang), native.items, answers, qResponse) : []),
+    [native, qId, lang, answers, qResponse],
   );
 
   const item9 = qId === 'phq-9' ? (answers[PHQ9_ITEM9] as { code?: string } | undefined) : undefined;
@@ -294,8 +294,8 @@ export function App() {
                     type="error"
                     showIcon
                     data-testid="item9-notice"
-                    message="Needs a clinician's attention the same day"
-                    description="Question 9 (thoughts of being better off dead or of self-harm) was answered with something other than “Not at all”. Whatever the total score, a clinician should assess the risk of suicide or self-harm today."
+                    message={ITEM9_NOTICE.message[lang]}
+                    description={ITEM9_NOTICE.description[lang]}
                     style={{ marginBottom: 16 }}
                   />
                 )}
@@ -304,7 +304,7 @@ export function App() {
                   is the sum.
                 </Paragraph>
                 <ContentLocaleProvider locale={lang}>
-                  <ScorePanel results={scores} role="practitioner" />
+                  <ScorePanel results={scores} role="patient" />
                 </ContentLocaleProvider>
                 <Card size="small" style={{ marginTop: 16 }}>
                   <Space direction="vertical" style={{ width: '100%' }}>

@@ -8,7 +8,7 @@
  */
 import { coerceAnswersToFhir, isAnswered } from '@helex/questionnaire-response';
 import type { AnswerOption, Item, ScoreDefinition, ScoreResult } from '@helex/questionnaire-response';
-import { SCORE_META, type QuestionnaireId } from './bands';
+import { SCORE_META, bandsFor, type QuestionnaireId } from './bands';
 
 // ── Minimal FHIR R4 shapes (only what the IG uses) ──────────────────────────────────────────
 
@@ -204,7 +204,7 @@ export function toNative(q: FhirQuestionnaire): NativeQuestionnaire {
           code: it.code?.filter((c) => c.code).map((c) => ({ system: c.system, code: c.code!, display: c.display })),
           min: m?.min,
           max: m?.max,
-          bands: m?.bands,
+          bands: bandsFor(m, 'en'),
         };
         if (parsed) {
           def.itemLinkIds = parsed.linkIds;

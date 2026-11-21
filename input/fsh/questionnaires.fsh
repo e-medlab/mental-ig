@@ -876,6 +876,11 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[1].extension[0].valueCode = #ru
 * item[=].text.extension[1].extension[1].url = "content"
 * item[=].text.extension[1].extension[1].valueString = "Общий балл"
+* item[=].text.extension[2].url = "http://hl7.org/fhir/StructureDefinition/translation"
+* item[=].text.extension[2].extension[0].url = "lang"
+* item[=].text.extension[2].extension[0].valueCode = #uk
+* item[=].text.extension[2].extension[1].url = "content"
+* item[=].text.extension[2].extension[1].valueString = "Загальний бал"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
@@ -1514,6 +1519,11 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[1].extension[0].valueCode = #ru
 * item[=].text.extension[1].extension[1].url = "content"
 * item[=].text.extension[1].extension[1].valueString = "Общий балл"
+* item[=].text.extension[2].url = "http://hl7.org/fhir/StructureDefinition/translation"
+* item[=].text.extension[2].extension[0].url = "lang"
+* item[=].text.extension[2].extension[0].valueCode = #uk
+* item[=].text.extension[2].extension[1].url = "content"
+* item[=].text.extension[2].extension[1].valueString = "Загальний бал"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
