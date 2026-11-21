@@ -72,6 +72,7 @@ Alias: $calculated = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-question
 Alias: $itemControl = http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl
 Alias: $itemControlCS = http://hl7.org/fhir/questionnaire-item-control
 Alias: $who5answer = https://taltech.ee/fhir/mental/CodeSystem/who-5-answer
+Alias: $who5 = https://taltech.ee/fhir/mental/CodeSystem/who-5
 """, encoding="utf-8")
 
 rs = ["// Answer lists shared by the items of one instrument. `insert` copies the rules in place.\n"]
@@ -189,19 +190,21 @@ Instance: who-5
 InstanceOf: Questionnaire
 Usage: #definition
 Title: "WHO-5 — World Health Organization-Five Well-Being Index"
-Description: "The five-item well-being questionnaire, coded with SNOMED CT 1144752009."
+Description: "The five-item well-being questionnaire, coded with SNOMED CT 1144752009 and, as LOINC has no WHO-5 codes, with this guide's own WHO-5 code system."
 * insert QuestionnaireHeader(who-5, WHO-5 Well-Being Index)
 * name = "WHO5"
 * description = "Five positively worded statements about how a person has been feeling over the last two weeks. Each answer scores 0 to 5. The raw score (0–25) is multiplied by 4 to give the well-being index (0–100), where higher means better well-being.\\n\\n{bands_md(WHO_BANDS, 'Index (0–100)')}\\n\\nAn index below 50 (a raw score below 13) suggests poor well-being and is an indication to screen for depression, for example with PHQ-9."
 * purpose = "Measuring current mental well-being and screening for depression."
 * copyright = "WHO-5 © World Health Organization 2024 (WHO/UCN/MSD/MHE/2024.1), licence CC BY-NC-SA 3.0 IGO: non-commercial use; commercial use needs WHO's permission. SNOMED CT codes © SNOMED International."
-* code = {SCT}1144752009 "World Health Organization-Five Well-Being Index questionnaire"
+* code[0] = $who5#who-5 "WHO-5 Well-Being Index questionnaire"
+* code[+] = {SCT}1144752009 "World Health Organization-Five Well-Being Index questionnaire"
 * item[0].linkId = "who-5-intro"
 * item[=].type = #display
 * item[=].text = "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being. Over the last two weeks:"
 """)
 for c, t in WHO_ITEMS:
     out.append(f"""* item[+].linkId = "{c}"
+* item[=].code = $who5#{c} {q(t)}
 * item[=].text = {q(t)}
 * item[=].type = #choice
 * item[=].required = true
@@ -210,18 +213,48 @@ for c, t in WHO_ITEMS:
 """)
 who_raw = sum_expr([c for c, _ in WHO_ITEMS])
 out.append(f"""* item[+].linkId = "who-5-raw"
+* item[=].code = $who5#who-5-raw "WHO-5 raw score"
 * item[=].text = "WHO-5 raw score (0–25)"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
 * item[=].extension[$calculated].valueExpression.expression = {q(who_raw)}
 * item[+].linkId = "who-5-index"
-* item[=].code = {SCT}1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
+* item[=].code[0] = $who5#who-5-index "WHO-5 well-being index"
+* item[=].code[+] = {SCT}1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
 * item[=].text = "WHO-5 well-being index (0–100)"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
 * item[=].extension[$calculated].valueExpression.expression = {q("(" + who_raw + ") * 4")}
+
+CodeSystem: Who5
+Id: who-5
+Title: "WHO-5 Well-Being Index concepts"
+Description: "The WHO-5 questionnaire, its five statements and its two scores. LOINC (2.83) has no codes for WHO-5, so this guide defines them, in the role LOINC plays for PHQ-9 and GAD-7. Where SNOMED CT has a code (the questionnaire and the 0–100 index), the guide uses both."
+* ^url = "https://taltech.ee/fhir/mental/CodeSystem/who-5"
+* ^status = #draft
+* ^experimental = true
+* ^caseSensitive = true
+* ^hierarchyMeaning = #part-of
+* ^copyright = "Statement wording © World Health Organization 2024, licence CC BY-NC-SA 3.0 IGO."
+* #who-5 "WHO-5 Well-Being Index questionnaire" "The whole questionnaire: five statements about the last two weeks, each scored 0–5."
+* #who-5 #who5-1 "I have felt cheerful and in good spirits"
+* #who-5 #who5-2 "I have felt calm and relaxed"
+* #who-5 #who5-3 "I have felt active and vigorous"
+* #who-5 #who5-4 "I woke up feeling fresh and rested"
+* #who-5 #who5-5 "My daily life has been filled with things that interest me"
+* #who-5 #who-5-raw "WHO-5 raw score" "Sum of the five answers, 0–25."
+* #who-5 #who-5-index "WHO-5 well-being index" "Raw score multiplied by 4, 0–100; below 50 suggests poor well-being. Same meaning as SNOMED CT 1144665009."
+
+ValueSet: Who5VS
+Id: who-5
+Title: "WHO-5 Well-Being Index concepts"
+Description: "Every concept of the WHO-5 code system: the questionnaire, its statements and its scores."
+* ^url = "https://taltech.ee/fhir/mental/ValueSet/who-5"
+* ^status = #draft
+* ^experimental = true
+* include codes from system $who5
 
 CodeSystem: Who5Answer
 Id: who-5-answer
@@ -305,6 +338,13 @@ PROC = {
     "gad-7": ("445598007", "Assessment using Generalized Anxiety Disorder 7 item score"),
     "who-5": ("1417808008", "Assessment using World Health Organization-Five Well-Being Index questionnaire"),
 }
+# The panel names the same assessment, so the procedure carries it next to SNOMED CT (as US Core's
+# procedure codes allow LOINC). LOINC 2.83 has no WHO-5 codes, so WHO-5 takes this guide's own panel code.
+PROC_LOINC = {
+    "phq-9": ("$LNC#44249-1", "PHQ-9 quick depression assessment panel [Reported.PHQ]"),
+    "gad-7": ("$LNC#69737-5", "Generalized anxiety disorder 7 item (GAD-7)"),
+    "who-5": ("$who5#who-5", "WHO-5 Well-Being Index questionnaire"),
+}
 TITLES = {"phq-9": "PHQ-9", "gad-7": "GAD-7", "who-5": "WHO-5"}
 
 summary = []
@@ -362,6 +402,8 @@ Description: "{p['name']} ({p['story']}) completed {TITLES[inst]} on {p['when']}
         for c, t, v in scores:
             lines.append(f"* item[+].linkId = \"{c}\"\n* item[=].text = {q(t)}\n* item[=].answer.valueInteger = {v}\n")
         code, disp = PROC[inst]
+        loinc_line = (f"* code.coding[+] = {PROC_LOINC[inst][0]} {q(PROC_LOINC[inst][1])}\n"
+                      if inst in PROC_LOINC else "")
         lines.append(f"""
 Instance: {pr_id}
 InstanceOf: Procedure
@@ -369,8 +411,8 @@ Usage: #example
 Title: "{TITLES[inst]} assessment of {p['name']}"
 Description: "The {TITLES[inst]} assessment of {p['name']} on {p['when']}. The answers are in {TITLES[inst]} answered by {p['name']}."
 * status = #completed
-* code = {SCT}{code} {q(disp)}
-* subject = Reference(patient-{key})
+* code.coding[0] = {SCT}{code} {q(disp)}
+{loinc_line}* subject = Reference(patient-{key})
 * performedDateTime = "{stamp}"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = {q(result)}

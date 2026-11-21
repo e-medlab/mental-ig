@@ -1,0 +1,58 @@
+name: Publish IG to GitHub Pages
+
+# Builds the guide with the same pinned IG Publisher as ./build.sh and publishes output/ to
+# https://e-medlab.github.io/mental-ig/. A build with QA errors is not published.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One publish at a time; a newer push supersedes a queued one but never cancels a deploy midway.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      # The publisher JAR (~230 MB) is version-stamped in build.sh, so its name is the cache key.
+      - name: Cache IG Publisher
+        uses: actions/cache@v4
+        with:
+          path: input-cache
+          key: ig-publisher-${{ hashFiles('build.sh') }}
+
+      - name: Build the guide
+        run: ./build.sh
+
+      - name: Fail on QA errors
+        run: |
+          errs=$(python3 -c "import json; print(json.load(open('output/qa.json'))['errs'])")
+          echo "QA errors: $errs (details in output/qa.html)"
+          [ "$errs" = "0" ]
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: output
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

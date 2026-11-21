@@ -168,59 +168,95 @@ Instance: who-5
 InstanceOf: Questionnaire
 Usage: #definition
 Title: "WHO-5 — World Health Organization-Five Well-Being Index"
-Description: "The five-item well-being questionnaire, coded with SNOMED CT 1144752009."
+Description: "The five-item well-being questionnaire, coded with SNOMED CT 1144752009 and, as LOINC has no WHO-5 codes, with this guide's own WHO-5 code system."
 * insert QuestionnaireHeader(who-5, WHO-5 Well-Being Index)
 * name = "WHO5"
 * description = "Five positively worded statements about how a person has been feeling over the last two weeks. Each answer scores 0 to 5. The raw score (0–25) is multiplied by 4 to give the well-being index (0–100), where higher means better well-being.\n\n| Index (0–100) | Interpretation |\n|---|---|\n| 0–49 | poor well-being |\n| 50–100 | adequate well-being |\n\nAn index below 50 (a raw score below 13) suggests poor well-being and is an indication to screen for depression, for example with PHQ-9."
 * purpose = "Measuring current mental well-being and screening for depression."
 * copyright = "WHO-5 © World Health Organization 2024 (WHO/UCN/MSD/MHE/2024.1), licence CC BY-NC-SA 3.0 IGO: non-commercial use; commercial use needs WHO's permission. SNOMED CT codes © SNOMED International."
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144752009 "World Health Organization-Five Well-Being Index questionnaire"
+* code[0] = $who5#who-5 "WHO-5 Well-Being Index questionnaire"
+* code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144752009 "World Health Organization-Five Well-Being Index questionnaire"
 * item[0].linkId = "who-5-intro"
 * item[=].type = #display
 * item[=].text = "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being. Over the last two weeks:"
 * item[+].linkId = "who5-1"
+* item[=].code = $who5#who5-1 "I have felt cheerful and in good spirits"
 * item[=].text = "I have felt cheerful and in good spirits"
 * item[=].type = #choice
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
 * item[+].linkId = "who5-2"
+* item[=].code = $who5#who5-2 "I have felt calm and relaxed"
 * item[=].text = "I have felt calm and relaxed"
 * item[=].type = #choice
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
 * item[+].linkId = "who5-3"
+* item[=].code = $who5#who5-3 "I have felt active and vigorous"
 * item[=].text = "I have felt active and vigorous"
 * item[=].type = #choice
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
 * item[+].linkId = "who5-4"
+* item[=].code = $who5#who5-4 "I woke up feeling fresh and rested"
 * item[=].text = "I woke up feeling fresh and rested"
 * item[=].type = #choice
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
 * item[+].linkId = "who5-5"
+* item[=].code = $who5#who5-5 "My daily life has been filled with things that interest me"
 * item[=].text = "My daily life has been filled with things that interest me"
 * item[=].type = #choice
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
 * item[+].linkId = "who-5-raw"
+* item[=].code = $who5#who-5-raw "WHO-5 raw score"
 * item[=].text = "WHO-5 raw score (0–25)"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
 * item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()"
 * item[+].linkId = "who-5-index"
-* item[=].code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
+* item[=].code[0] = $who5#who-5-index "WHO-5 well-being index"
+* item[=].code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
 * item[=].text = "WHO-5 well-being index (0–100)"
 * item[=].type = #integer
 * item[=].readOnly = true
 * item[=].extension[$calculated].valueExpression.language = #text/fhirpath
 * item[=].extension[$calculated].valueExpression.expression = "(%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()) * 4"
+
+CodeSystem: Who5
+Id: who-5
+Title: "WHO-5 Well-Being Index concepts"
+Description: "The WHO-5 questionnaire, its five statements and its two scores. LOINC (2.83) has no codes for WHO-5, so this guide defines them, in the role LOINC plays for PHQ-9 and GAD-7. Where SNOMED CT has a code (the questionnaire and the 0–100 index), the guide uses both."
+* ^url = "https://taltech.ee/fhir/mental/CodeSystem/who-5"
+* ^status = #draft
+* ^experimental = true
+* ^caseSensitive = true
+* ^hierarchyMeaning = #part-of
+* ^copyright = "Statement wording © World Health Organization 2024, licence CC BY-NC-SA 3.0 IGO."
+* #who-5 "WHO-5 Well-Being Index questionnaire" "The whole questionnaire: five statements about the last two weeks, each scored 0–5."
+* #who-5 #who5-1 "I have felt cheerful and in good spirits"
+* #who-5 #who5-2 "I have felt calm and relaxed"
+* #who-5 #who5-3 "I have felt active and vigorous"
+* #who-5 #who5-4 "I woke up feeling fresh and rested"
+* #who-5 #who5-5 "My daily life has been filled with things that interest me"
+* #who-5 #who-5-raw "WHO-5 raw score" "Sum of the five answers, 0–25."
+* #who-5 #who-5-index "WHO-5 well-being index" "Raw score multiplied by 4, 0–100; below 50 suggests poor well-being. Same meaning as SNOMED CT 1144665009."
+
+ValueSet: Who5VS
+Id: who-5
+Title: "WHO-5 Well-Being Index concepts"
+Description: "Every concept of the WHO-5 code system: the questionnaire, its statements and its scores."
+* ^url = "https://taltech.ee/fhir/mental/ValueSet/who-5"
+* ^status = #draft
+* ^experimental = true
+* include codes from system $who5
 
 CodeSystem: Who5Answer
 Id: who-5-answer

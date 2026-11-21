@@ -52,7 +52,8 @@ Usage: #example
 Title: "PHQ-9 assessment of Mari Maasikas"
 Description: "The PHQ-9 assessment of Mari Maasikas on 2026-11-10. The answers are in PHQ-9 answered by Mari Maasikas."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-mari)
 * performedDateTime = "2026-11-10T09:15:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
@@ -110,7 +111,8 @@ Usage: #example
 Title: "PHQ-9 assessment of Juhan Juurikas"
 Description: "The PHQ-9 assessment of Juhan Juurikas on 2026-11-12. The answers are in PHQ-9 answered by Juhan Juurikas."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-juhan)
 * performedDateTime = "2026-11-12T14:40:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
@@ -168,7 +170,8 @@ Usage: #example
 Title: "PHQ-9 assessment of Kati Karu"
 Description: "The PHQ-9 assessment of Kati Karu on 2026-11-14. The answers are in PHQ-9 answered by Kati Karu."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
+* code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-kati)
 * performedDateTime = "2026-11-14T11:05:00+02:00"
 * performer.actor = Reference(practitioner-peeter)

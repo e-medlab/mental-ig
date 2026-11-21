@@ -43,7 +43,8 @@ Usage: #example
 Title: "GAD-7 assessment of Mari Maasikas"
 Description: "The GAD-7 assessment of Mari Maasikas on 2026-11-10. The answers are in GAD-7 answered by Mari Maasikas."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[+] = $LNC#69737-5 "Generalized anxiety disorder 7 item (GAD-7)"
 * subject = Reference(patient-mari)
 * performedDateTime = "2026-11-10T09:15:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
@@ -92,7 +93,8 @@ Usage: #example
 Title: "GAD-7 assessment of Juhan Juurikas"
 Description: "The GAD-7 assessment of Juhan Juurikas on 2026-11-12. The answers are in GAD-7 answered by Juhan Juurikas."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[+] = $LNC#69737-5 "Generalized anxiety disorder 7 item (GAD-7)"
 * subject = Reference(patient-juhan)
 * performedDateTime = "2026-11-12T14:40:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
@@ -141,7 +143,8 @@ Usage: #example
 Title: "GAD-7 assessment of Kati Karu"
 Description: "The GAD-7 assessment of Kati Karu on 2026-11-14. The answers are in GAD-7 answered by Kati Karu."
 * status = #completed
-* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445598007 "Assessment using Generalized Anxiety Disorder 7 item score"
+* code.coding[+] = $LNC#69737-5 "Generalized anxiety disorder 7 item (GAD-7)"
 * subject = Reference(patient-kati)
 * performedDateTime = "2026-11-14T11:05:00+02:00"
 * performer.actor = Reference(practitioner-peeter)

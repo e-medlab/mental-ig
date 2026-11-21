@@ -30,7 +30,7 @@ score, and her PHQ-9 procedure records that this happened.
 
 #### PHQ-9
 
-Questionnaire: [PHQ-9](Questionnaire-phq-9.html). Procedure code: SNOMED CT `715252007` *Depression screening using PHQ-9 (Patient Health Questionnaire 9) score*.
+Questionnaire: [PHQ-9](Questionnaire-phq-9.html). Procedure code: SNOMED CT `715252007` *Depression screening using PHQ-9 (Patient Health Questionnaire 9) score* and LOINC `44249-1` *PHQ-9 quick depression assessment panel [Reported.PHQ]*.
 
 | Patient | Answers | Assessment | Result |
 |---|---|---|---|
@@ -40,7 +40,7 @@ Questionnaire: [PHQ-9](Questionnaire-phq-9.html). Procedure code: SNOMED CT `715
 
 #### GAD-7
 
-Questionnaire: [GAD-7](Questionnaire-gad-7.html). Procedure code: SNOMED CT `445598007` *Assessment using Generalized Anxiety Disorder 7 item score*.
+Questionnaire: [GAD-7](Questionnaire-gad-7.html). Procedure code: SNOMED CT `445598007` *Assessment using Generalized Anxiety Disorder 7 item score* and LOINC `69737-5` *Generalized anxiety disorder 7 item (GAD-7)*.
 
 | Patient | Answers | Assessment | Result |
 |---|---|---|---|
@@ -50,7 +50,7 @@ Questionnaire: [GAD-7](Questionnaire-gad-7.html). Procedure code: SNOMED CT `445
 
 #### WHO-5
 
-Questionnaire: [WHO-5](Questionnaire-who-5.html). Procedure code: SNOMED CT `1417808008` *Assessment using World Health Organization-Five Well-Being Index questionnaire*.
+Questionnaire: [WHO-5](Questionnaire-who-5.html). Procedure code: SNOMED CT `1417808008` *Assessment using World Health Organization-Five Well-Being Index questionnaire* and WHO-5 (this guide) `who-5` *WHO-5 Well-Being Index questionnaire*.
 
 | Patient | Answers | Assessment | Result |
 |---|---|---|---|

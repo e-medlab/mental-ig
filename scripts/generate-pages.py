@@ -8,6 +8,11 @@ R = IG / "fsh-generated" / "resources"
 P = IG / "input" / "pagecontent"
 
 
+def system_name(url):
+    return {"http://loinc.org": "LOINC", "http://snomed.info/sct": "SNOMED CT",
+            "https://taltech.ee/fhir/mental/CodeSystem/who-5": "WHO-5 (this guide)"}[url]
+
+
 def load(name):
     return json.loads((R / name).read_text(encoding="utf-8"))
 
@@ -51,9 +56,11 @@ score, and her PHQ-9 procedure records that this happened.
 
 """)
 for i in T:
-    code = load(f"Procedure-{i}-procedure-mari.json")["code"]["coding"][0]
-    out.append(f"#### {T[i]}\n\nQuestionnaire: [{T[i]}](Questionnaire-{i}.html). Procedure code: SNOMED CT "
-               f"`{code['code']}` *{code['display']}*.\n\n| Patient | Answers | Assessment | Result |\n|---|---|---|---|\n")
+    codings = load(f"Procedure-{i}-procedure-mari.json")["code"]["coding"]
+    names = " and ".join(f"{system_name(x['system'])} `{x['code']}` *{x['display']}*"
+                         for x in codings)
+    out.append(f"#### {T[i]}\n\nQuestionnaire: [{T[i]}](Questionnaire-{i}.html). Procedure code: {names}.\n\n"
+               "| Patient | Answers | Assessment | Result |\n|---|---|---|---|\n")
     for k, n in people.items():
         outcome = load(f"Procedure-{i}-procedure-{k}.json")["outcome"]["text"]
         out.append(f"| {n} | [QuestionnaireResponse](QuestionnaireResponse-{i}-response-{k}.html) | "
@@ -78,37 +85,53 @@ JSON tab:
 """)
 (P / "examples.md").write_text("".join(out), encoding="utf-8")
 
-c = ["""Every code in this guide comes from an international code system, except the six WHO-5 answers, which
-neither LOINC nor SNOMED CT codes. The SNOMED CT codes were checked against the International Edition of
-1 November 2026, and all of them are active.
+c = ["""The guide codes every concept in **both LOINC and SNOMED CT** wherever both systems have a code for it.
+Where a cell below says *none*, that system has no code for the concept (checked against LOINC 2.83 and the
+SNOMED CT International Edition of 1 November 2026, in which every code used here is active).
 
-### Questionnaires and scores
+LOINC has no codes for WHO-5 at all, so this guide defines its own: the
+[WHO-5 concepts](CodeSystem-who-5.html) code system (value set [WHO-5 concepts](ValueSet-who-5.html)) plays
+the role LOINC plays for PHQ-9 and GAD-7, and [WHO-5 response options](CodeSystem-who-5-answer.html)
+(value set [WHO-5 response options](ValueSet-who-5-answer.html)) holds the six answers. Their codes are
+under `https://taltech.ee/fhir/mental/CodeSystem/`.
 
-| Questionnaire | Questionnaire code | Total score code | Assessment procedure |
-|---|---|---|---|
-| PHQ-9 | LOINC `44249-1` | LOINC `44261-6`, SNOMED CT `720433000` | SNOMED CT `715252007` |
-| GAD-7 | LOINC `69737-5`, SNOMED CT `704501007` | LOINC `70274-6`, SNOMED CT `445455005` | SNOMED CT `445598007` |
-| WHO-5 | SNOMED CT `1144752009` | SNOMED CT `1144665009` (index 0–100) | SNOMED CT `1417808008` |
+### Questionnaires, scores and assessments
 
-PHQ-9 has no SNOMED CT code for the questionnaire itself, and WHO-5 has no LOINC codes.
+| Concept | LOINC (or this guide's WHO-5 code) | SNOMED CT |
+|---|---|---|
+| PHQ-9 questionnaire | `44249-1` PHQ-9 quick depression assessment panel | none |
+| PHQ-9 total score | `44261-6` Patient Health Questionnaire 9 item (PHQ-9) total score | `720433000` Patient Health Questionnaire Nine Item score |
+| PHQ-9 assessment (Procedure) | `44249-1` (the panel) | `715252007` Depression screening using PHQ-9 (Patient Health Questionnaire 9) score |
+| GAD-7 questionnaire | `69737-5` Generalized anxiety disorder 7 item (GAD-7) | `704501007` Generalized Anxiety Disorder 7 item scale |
+| GAD-7 total score | `70274-6` Generalized anxiety disorder 7 item (GAD-7) total score | `445455005` Generalized Anxiety Disorder 7 item score |
+| GAD-7 assessment (Procedure) | `69737-5` (the panel) | `445598007` Assessment using Generalized Anxiety Disorder 7 item score |
+| WHO-5 questionnaire | WHO-5 `who-5` | `1144752009` World Health Organization-Five Well-Being Index questionnaire |
+| WHO-5 raw score (0–25) | WHO-5 `who-5-raw` | none |
+| WHO-5 index (0–100) | WHO-5 `who-5-index` | `1144665009` World Health Organization-Five Well-Being Index questionnaire score |
+| WHO-5 assessment (Procedure) | WHO-5 `who-5` (the questionnaire) | `1417808008` Assessment using World Health Organization-Five Well-Being Index questionnaire |
 
-### Questions
-
-PHQ-9 and GAD-7 questions are coded with their LOINC codes, which are also their `linkId`s. WHO-5
-questions have no code in either system and are identified by their `linkId` only (`who5-1` to `who5-5`).
+LOINC has no procedure codes as such; the assessment procedures carry the LOINC panel (for WHO-5, the
+guide's own questionnaire code) next to the SNOMED CT procedure code, because it names the same assessment.
 
 """]
+c.append("""### Questions
+
+PHQ-9 and GAD-7 questions are coded with their LOINC codes, which are also their `linkId`s; SNOMED CT has
+no codes for the individual questions. WHO-5 statements are coded in the guide's own WHO-5 code system,
+with the same codes as their `linkId`s (`who5-1` to `who5-5`).
+
+""")
 for i, title in T.items():
     q = load(f"Questionnaire-{i}.json")
     c.append(f"#### {title}\n\n| linkId | Code | Question |\n|---|---|---|\n")
     for it in q["item"]:
         if it["type"] == "display":
             continue
-        codes = ", ".join(f"{'LOINC' if x['system'].endswith('loinc.org') else 'SNOMED CT'} `{x['code']}`"
+        codes = ", ".join(f"{system_name(x['system'])} `{x['code']}`"
                           for x in it.get("code", [])) or "—"
         c.append(f"| `{it['linkId']}` | {codes} | {it['text']} |\n")
     c.append("\n")
-c.append("### Answers\n\n")
+c.append("### Answers\n\nThe answers are LOINC answer codes; SNOMED CT has no codes for them.\n\n")
 q = load("Questionnaire-phq-9.json")
 c.append("PHQ-9 and GAD-7 symptom questions (LOINC answer list `LL358-3`):\n\n| Code | Answer | Points |\n|---|---|---|\n")
 for a in q["item"][1]["answerOption"]:

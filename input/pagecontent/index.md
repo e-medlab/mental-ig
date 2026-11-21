@@ -69,15 +69,15 @@ Questionnaire (the form)  ◄── questionnaire ──  QuestionnaireResponse 
                                                          └──────────── subject ──► Patient ◄── subject ──┘
 ```
 
-The procedure codes are:
+The guide uses **both LOINC and SNOMED CT** wherever both have a code. The assessment procedures are coded:
 
-| Questionnaire | Assessment procedure (SNOMED CT) |
-|---|---|
-| PHQ-9 | `715252007` Depression screening using PHQ-9 (Patient Health Questionnaire 9) score |
-| GAD-7 | `445598007` Assessment using Generalized Anxiety Disorder 7 item score |
-| WHO-5 | `1417808008` Assessment using World Health Organization-Five Well-Being Index questionnaire |
+| Questionnaire | SNOMED CT procedure | LOINC panel |
+|---|---|---|
+| PHQ-9 | `715252007` Depression screening using PHQ-9 (Patient Health Questionnaire 9) score | `44249-1` |
+| GAD-7 | `445598007` Assessment using Generalized Anxiety Disorder 7 item score | `69737-5` |
+| WHO-5 | `1417808008` Assessment using World Health Organization-Five Well-Being Index questionnaire | LOINC has no WHO-5 codes; the guide's own [WHO-5 code system](CodeSystem-who-5.html) gives `who-5` |
 
-Every code in the guide, with its source, is listed on [Codes used](coding.html).
+Every code in the guide, LOINC and SNOMED CT side by side, is listed on [Codes used](coding.html).
 
 ### How to read a page in this guide
 
