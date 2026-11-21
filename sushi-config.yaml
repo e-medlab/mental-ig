@@ -27,6 +27,15 @@ parameters:
   special-url:
     - http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
   show-inherited-invariants: false
+  # Resources set their own publisher, version, contact, copyright and jurisdiction (SUSHI fills them for this
+  # guide's own definitions). Applying the guide's values to every resource would also stamp them on the copy
+  # of HL7's SDC extension, making it read as TalTech's work.
+  apply-publisher: false
+  apply-version: false
+  apply-contact: false
+  apply-copyright: false
+  apply-jurisdiction: false
+  apply-license: false
   usage-stats-opt-out: true
 
 pages:

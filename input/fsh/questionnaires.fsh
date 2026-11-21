@@ -2211,6 +2211,7 @@ Id: who-5
 Title: "WHO-5 Well-Being Index concepts"
 Description: "The WHO-5 questionnaire, its five statements and its two scores. LOINC (2.83) has no codes for WHO-5, so this guide defines them, in the role LOINC plays for PHQ-9 and GAD-7. Where SNOMED CT has a code (the questionnaire and the 0–100 index), the guide uses both."
 * ^url = "https://taltech.ee/fhir/mental/CodeSystem/who-5"
+* insert GuideMetadata
 * ^status = #draft
 * ^experimental = true
 * ^caseSensitive = true
@@ -2230,6 +2231,8 @@ Id: who-5
 Title: "WHO-5 Well-Being Index concepts"
 Description: "Every concept of the WHO-5 code system: the questionnaire, its statements and its scores."
 * ^url = "https://taltech.ee/fhir/mental/ValueSet/who-5"
+* insert GuideMetadata
+* ^copyright = "© 2026 TalTech — Tallinn University of Technology, eMedLab. CC BY 4.0: reuse must credit TalTech eMedLab."
 * ^status = #draft
 * ^experimental = true
 * include codes from system $who5
@@ -2239,6 +2242,7 @@ Id: who-5-answer
 Title: "WHO-5 response options"
 Description: "The six response options of the WHO-5 Well-Being Index. The code is the number of points the answer scores. LOINC and SNOMED CT have no codes for these answers, so this guide defines them."
 * ^url = "https://taltech.ee/fhir/mental/CodeSystem/who-5-answer"
+* insert GuideMetadata
 * ^status = #draft
 * ^experimental = true
 * ^caseSensitive = true
@@ -2255,6 +2259,8 @@ Id: who-5-answer
 Title: "WHO-5 response options"
 Description: "All six WHO-5 response options."
 * ^url = "https://taltech.ee/fhir/mental/ValueSet/who-5-answer"
+* insert GuideMetadata
+* ^copyright = "© 2026 TalTech — Tallinn University of Technology, eMedLab. CC BY 4.0: reuse must credit TalTech eMedLab."
 * ^status = #draft
 * ^experimental = true
 * include codes from system $who5answer

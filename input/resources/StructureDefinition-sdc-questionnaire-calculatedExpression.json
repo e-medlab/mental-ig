@@ -94,5 +94,6 @@
         ]
       }
     ]
-  }
+  },
+  "copyright": "© HL7 International, from FHIR Structured Data Capture (SDC) 3.0.0 (https://hl7.org/fhir/uv/sdc/STU3/), published under CC0 1.0. Carried unchanged in this guide; it is not covered by the guide's CC BY 4.0 licence."
 }

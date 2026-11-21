@@ -11,9 +11,3 @@ The resource CodeSystem/who-5 should have an OID assigned to cater for possible 
 
 # No OID arc is assigned to this guide yet.
 The resource ValueSet/who-5 should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
-
-# The copy of SDC's calculatedExpression definition names HL7 / FHIR Infrastructure as publisher; the IG Publisher stamps this guide's publisher on every resource it publishes.
-The nominated WG 'fhir' means that the publisher should be 'HL7 International / FHIR Infrastructure' but 'TalTech' was found
-
-# As above: the IG Publisher replaces the copy's contact with this guide's.
-The nominated WG 'fhir' means that the contact url should be 'http://www.hl7.org/Special/committees/fiwg' but it was not found

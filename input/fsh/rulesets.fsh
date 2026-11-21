@@ -35,6 +35,15 @@ RuleSet: Who5Answers
 RuleSet: RadioButtons
 * extension[$itemControl].valueCodeableConcept = $itemControlCS#radio-button "Radio Button"
 
+RuleSet: GuideMetadata
+// This guide's own metadata; the IG Publisher is told not to stamp it on every resource (sushi-config apply-*: false)
+* ^version = "0.1.0"
+* ^publisher = "TalTech"
+* ^contact.name = "TalTech eMedLab"
+* ^contact.telecom.system = #url
+* ^contact.telecom.value = "https://github.com/e-medlab"
+* ^jurisdiction = urn:iso:std:iso:3166#EE "Estonia"
+
 RuleSet: QuestionnaireHeader(id, title)
 * url = "https://taltech.ee/fhir/mental/Questionnaire/{id}"
 * version = "0.1.0"
@@ -44,5 +53,8 @@ RuleSet: QuestionnaireHeader(id, title)
 * subjectType = #Patient
 * date = "2026-11-21"
 * publisher = "TalTech"
+* contact.name = "TalTech eMedLab"
+* contact.telecom.system = #url
+* contact.telecom.value = "https://github.com/e-medlab"
 * language = #en
 * jurisdiction = urn:iso:std:iso:3166#EE "Estonia"
