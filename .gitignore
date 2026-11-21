@@ -1,0 +1,8 @@
+input-cache/
+fsh-generated/
+output/
+temp/
+template/
+.DS_Store
+# Written into the IG root by the IG Publisher on every build
+Requirements-fromNarrative.json

@@ -1,0 +1,248 @@
+Instance: phq-9
+InstanceOf: Questionnaire
+Usage: #definition
+Title: "PHQ-9 — Patient Health Questionnaire-9"
+Description: "The nine-item depression screening questionnaire, coded with LOINC panel 44249-1."
+* insert QuestionnaireHeader(phq-9, [[Patient Health Questionnaire-9 (PHQ-9)]])
+* name = "PHQ9"
+* description = "Nine questions about how often, over the last two weeks, a person has been bothered by symptoms of depression. Each answer scores 0 to 3, so the total score is 0 to 27.\n\n| Total score | Interpretation |\n|---|---|\n| 0–4 | minimal |\n| 5–9 | mild |\n| 10–14 | moderate |\n| 15–19 | moderately severe |\n| 20–27 | severe |\n\nAny answer other than *Not at all* to question 9 (thoughts of self-harm) needs a clinician's attention the same day, whatever the total score."
+* purpose = "Screening for depression and monitoring the severity of depressive symptoms over time."
+* copyright = "PHQ-9 © Pfizer Inc. No permission is required to reproduce, translate, display or distribute it. LOINC codes © Regenstrief Institute, Inc., used under the LOINC licence (https://loinc.org/license/). SNOMED CT codes © SNOMED International."
+* code = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
+* item[0].linkId = "phq-9-intro"
+* item[=].type = #display
+* item[=].text = "Over the last 2 weeks, how often have you been bothered by any of the following problems?"
+* item[+].linkId = "44250-9"
+* item[=].code = $LNC#44250-9
+* item[=].text = "Little interest or pleasure in doing things"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44255-8"
+* item[=].code = $LNC#44255-8
+* item[=].text = "Feeling down, depressed, or hopeless"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44259-0"
+* item[=].code = $LNC#44259-0
+* item[=].text = "Trouble falling or staying asleep, or sleeping too much"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44254-1"
+* item[=].code = $LNC#44254-1
+* item[=].text = "Feeling tired or having little energy"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44251-7"
+* item[=].code = $LNC#44251-7
+* item[=].text = "Poor appetite or overeating"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44258-2"
+* item[=].code = $LNC#44258-2
+* item[=].text = "Feeling bad about yourself — or that you are a failure or have let yourself or your family down"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44252-5"
+* item[=].code = $LNC#44252-5
+* item[=].text = "Trouble concentrating on things, such as reading the newspaper or watching television"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44253-3"
+* item[=].code = $LNC#44253-3
+* item[=].text = "Moving or speaking so slowly that other people could have noticed? Or the opposite — being so fidgety or restless that you have been moving around a lot more than usual"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "44260-8"
+* item[=].code = $LNC#44260-8
+* item[=].text = "Thoughts that you would be better off dead, or of hurting yourself in some way"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69722-7"
+* item[=].code = $LNC#69722-7
+* item[=].text = "If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people?"
+* item[=].type = #choice
+* item[=].required = false
+* item[=] insert RadioButtons
+* item[=] insert DifficultyAnswers
+* item[+].linkId = "phq-9-total"
+* item[=].code[0] = $LNC#44261-6 "Patient Health Questionnaire 9 item (PHQ-9) total score [Reported]"
+* item[=].code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#720433000 "Patient Health Questionnaire Nine Item score"
+* item[=].text = "PHQ-9 total score (0–27)"
+* item[=].type = #integer
+* item[=].readOnly = true
+* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
+* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('44250-9' | '44255-8' | '44259-0' | '44254-1' | '44251-7' | '44258-2' | '44252-5' | '44253-3' | '44260-8')).answer.value.ordinal().sum()"
+
+Instance: gad-7
+InstanceOf: Questionnaire
+Usage: #definition
+Title: "GAD-7 — Generalized Anxiety Disorder 7-item scale"
+Description: "The seven-item anxiety screening questionnaire, coded with LOINC panel 69737-5 and SNOMED CT 704501007."
+* insert QuestionnaireHeader(gad-7, [[Generalized Anxiety Disorder 7-item scale (GAD-7)]])
+* name = "GAD7"
+* description = "Seven questions about how often, over the last two weeks, a person has been bothered by symptoms of anxiety. Each answer scores 0 to 3, so the total score is 0 to 21.\n\n| Total score | Interpretation |\n|---|---|\n| 0–4 | minimal |\n| 5–9 | mild |\n| 10–14 | moderate |\n| 15–21 | severe |\n\nA total of 10 or more is the usual cut-off for further assessment of an anxiety disorder."
+* purpose = "Screening for generalised anxiety disorder and monitoring the severity of anxiety symptoms over time."
+* copyright = "GAD-7 © Pfizer Inc. No permission is required to reproduce, translate, display or distribute it. LOINC codes © Regenstrief Institute, Inc., used under the LOINC licence (https://loinc.org/license/). SNOMED CT codes © SNOMED International."
+* code[0] = $LNC#69737-5 "Generalized anxiety disorder 7 item (GAD-7)"
+* code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#704501007 "Generalized Anxiety Disorder 7 item scale"
+* item[0].linkId = "gad-7-intro"
+* item[=].type = #display
+* item[=].text = "Over the last 2 weeks, how often have you been bothered by the following problems?"
+* item[+].linkId = "69725-0"
+* item[=].code = $LNC#69725-0
+* item[=].text = "Feeling nervous, anxious or on edge"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "68509-9"
+* item[=].code = $LNC#68509-9
+* item[=].text = "Not being able to stop or control worrying"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69733-4"
+* item[=].code = $LNC#69733-4
+* item[=].text = "Worrying too much about different things"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69734-2"
+* item[=].code = $LNC#69734-2
+* item[=].text = "Trouble relaxing"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69735-9"
+* item[=].code = $LNC#69735-9
+* item[=].text = "Being so restless that it is hard to sit still"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69689-8"
+* item[=].code = $LNC#69689-8
+* item[=].text = "Becoming easily annoyed or irritable"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "69736-7"
+* item[=].code = $LNC#69736-7
+* item[=].text = "Feeling afraid as if something awful might happen"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert FrequencyAnswers
+* item[+].linkId = "gad-7-total"
+* item[=].code[0] = $LNC#70274-6 "Generalized anxiety disorder 7 item (GAD-7) total score [Reported.PHQ]"
+* item[=].code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#445455005 "Generalized Anxiety Disorder 7 item score"
+* item[=].text = "GAD-7 total score (0–21)"
+* item[=].type = #integer
+* item[=].readOnly = true
+* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
+* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('69725-0' | '68509-9' | '69733-4' | '69734-2' | '69735-9' | '69689-8' | '69736-7')).answer.value.ordinal().sum()"
+
+Instance: who-5
+InstanceOf: Questionnaire
+Usage: #definition
+Title: "WHO-5 — World Health Organization-Five Well-Being Index"
+Description: "The five-item well-being questionnaire, coded with SNOMED CT 1144752009."
+* insert QuestionnaireHeader(who-5, WHO-5 Well-Being Index)
+* name = "WHO5"
+* description = "Five positively worded statements about how a person has been feeling over the last two weeks. Each answer scores 0 to 5. The raw score (0–25) is multiplied by 4 to give the well-being index (0–100), where higher means better well-being.\n\n| Index (0–100) | Interpretation |\n|---|---|\n| 0–49 | poor well-being |\n| 50–100 | adequate well-being |\n\nAn index below 50 (a raw score below 13) suggests poor well-being and is an indication to screen for depression, for example with PHQ-9."
+* purpose = "Measuring current mental well-being and screening for depression."
+* copyright = "WHO-5 © World Health Organization 2024 (WHO/UCN/MSD/MHE/2024.1), licence CC BY-NC-SA 3.0 IGO: non-commercial use; commercial use needs WHO's permission. SNOMED CT codes © SNOMED International."
+* code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144752009 "World Health Organization-Five Well-Being Index questionnaire"
+* item[0].linkId = "who-5-intro"
+* item[=].type = #display
+* item[=].text = "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being. Over the last two weeks:"
+* item[+].linkId = "who5-1"
+* item[=].text = "I have felt cheerful and in good spirits"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert Who5Answers
+* item[+].linkId = "who5-2"
+* item[=].text = "I have felt calm and relaxed"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert Who5Answers
+* item[+].linkId = "who5-3"
+* item[=].text = "I have felt active and vigorous"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert Who5Answers
+* item[+].linkId = "who5-4"
+* item[=].text = "I woke up feeling fresh and rested"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert Who5Answers
+* item[+].linkId = "who5-5"
+* item[=].text = "My daily life has been filled with things that interest me"
+* item[=].type = #choice
+* item[=].required = true
+* item[=] insert RadioButtons
+* item[=] insert Who5Answers
+* item[+].linkId = "who-5-raw"
+* item[=].text = "WHO-5 raw score (0–25)"
+* item[=].type = #integer
+* item[=].readOnly = true
+* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
+* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()"
+* item[+].linkId = "who-5-index"
+* item[=].code = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
+* item[=].text = "WHO-5 well-being index (0–100)"
+* item[=].type = #integer
+* item[=].readOnly = true
+* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
+* item[=].extension[$calculated].valueExpression.expression = "(%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()) * 4"
+
+CodeSystem: Who5Answer
+Id: who-5-answer
+Title: "WHO-5 response options"
+Description: "The six response options of the WHO-5 Well-Being Index. The code is the number of points the answer scores. LOINC and SNOMED CT have no codes for these answers, so this guide defines them."
+* ^url = "https://taltech.ee/fhir/mental/CodeSystem/who-5-answer"
+* ^status = #draft
+* ^experimental = true
+* ^caseSensitive = true
+* ^copyright = "Answer wording © World Health Organization 2024, licence CC BY-NC-SA 3.0 IGO."
+* #5 "All of the time"
+* #4 "Most of the time"
+* #3 "More than half of the time"
+* #2 "Less than half of the time"
+* #1 "Some of the time"
+* #0 "At no time"
+
+ValueSet: Who5AnswerVS
+Id: who-5-answer
+Title: "WHO-5 response options"
+Description: "All six WHO-5 response options."
+* ^url = "https://taltech.ee/fhir/mental/ValueSet/who-5-answer"
+* ^status = #draft
+* ^experimental = true
+* include codes from system $who5answer

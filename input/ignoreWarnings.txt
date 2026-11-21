@@ -1,0 +1,10 @@
+== Suppressed Messages ==
+
+# SDC 4.0.0 replaces ordinalValue and ordinal() with itemWeight and weight(); 3.0.0 is what R4 form renderers implement today.
+The ImplementationGuide uses package hl7.fhir.uv.sdc#3.0.0 released on 2022-03-08, but the most recent appropriate version is 4.0.0. This reference is getting old and the more recent version should be considered
+
+# No OID arc is assigned to this guide yet.
+The resource CodeSystem/who-5-answer should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)
+
+# No OID arc is assigned to this guide yet.
+The resource ValueSet/who-5-answer should have an OID assigned to cater for possible use with OID based terminology systems e.g. CDA usage (OIDs are easy to assign - see https://build.fhir.org/ig/FHIR/ig-guidance/oids.html)

@@ -1,0 +1,44 @@
+id: ee.taltech.fhir.mental
+canonical: https://taltech.ee/fhir/mental
+name: MentalHealthQuestionnaires
+title: Mental Health Questionnaires (PHQ-9, GAD-7, WHO-5)
+description: >-
+  Standardised FHIR Questionnaires for three self-report mental health instruments (PHQ-9 for
+  depression, GAD-7 for anxiety and WHO-5 for well-being), coded with LOINC and SNOMED CT, with
+  worked examples of completed questionnaires and the assessment procedures they record.
+status: draft
+experimental: true
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2026+
+releaseLabel: ci-build
+license: CC-BY-4.0
+jurisdiction: urn:iso:std:iso:3166#EE "Estonia"
+publisher:
+  name: TalTech
+  url: https://taltech.ee
+
+dependencies:
+  hl7.fhir.uv.sdc: 3.0.0
+
+parameters:
+  show-inherited-invariants: false
+  usage-stats-opt-out: true
+
+pages:
+  index.md:
+    title: Home
+  examples.md:
+    title: Worked examples
+  coding.md:
+    title: Codes used
+
+menu:
+  Home: index.html
+  Questionnaires:
+    PHQ-9 (depression): Questionnaire-phq-9.html
+    GAD-7 (anxiety): Questionnaire-gad-7.html
+    WHO-5 (well-being): Questionnaire-who-5.html
+  Worked examples: examples.html
+  Codes used: coding.html
+  Artifacts: artifacts.html
