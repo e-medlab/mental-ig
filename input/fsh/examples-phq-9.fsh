@@ -55,7 +55,7 @@ Description: "The PHQ-9 assessment of Mari Maasikas on 2026-11-10. The answers a
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
 * code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-mari)
-* performedDateTime = "2026-11-10T09:15:00+02:00"
+* occurrenceDateTime = "2026-11-10T09:15:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "PHQ-9 total score 3 of 27: minimal depressive symptoms"
 
@@ -114,7 +114,7 @@ Description: "The PHQ-9 assessment of Juhan Juurikas on 2026-11-12. The answers 
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
 * code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-juhan)
-* performedDateTime = "2026-11-12T14:40:00+02:00"
+* occurrenceDateTime = "2026-11-12T14:40:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "PHQ-9 total score 12 of 27: moderate depressive symptoms"
 
@@ -173,6 +173,6 @@ Description: "The PHQ-9 assessment of Kati Karu on 2026-11-14. The answers are i
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#715252007 "Depression screening using PHQ-9 (Patient Health Questionnaire 9) score"
 * code.coding[+] = $LNC#44249-1 "PHQ-9 quick depression assessment panel [Reported.PHQ]"
 * subject = Reference(patient-kati)
-* performedDateTime = "2026-11-14T11:05:00+02:00"
+* occurrenceDateTime = "2026-11-14T11:05:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "PHQ-9 total score 22 of 27: severe depressive symptoms. Question 9 (thoughts of self-harm) answered 'More than half the days': the physician assessed suicide risk during the same visit"

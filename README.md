@@ -1,6 +1,6 @@
 # Mental Health Questionnaires IG (PHQ-9, GAD-7, WHO-5)
 
-FHIR R4 implementation guide `ee.taltech.fhir.mental`, canonical `https://taltech.ee/fhir/mental`.
+FHIR R5 implementation guide `ee.taltech.fhir.mental`, canonical `https://taltech.ee/fhir/mental`.
 
 It defines three standardised Questionnaires (PHQ-9, GAD-7, WHO-5) coded with LOINC and SNOMED CT, and
 worked examples: three fictional patients, each with a completed QuestionnaireResponse and the
@@ -17,7 +17,7 @@ assessment Procedure it belongs to, for every questionnaire (9 + 9). The landing
 | `input/pagecontent/` | `index.md` (home), `examples.md`, `coding.md` |
 | `scripts/generate-fsh.py` | writes every `input/fsh/*.fsh` file, so example scores are computed, not typed |
 | `scripts/generate-pages.py` | writes `examples.md` and `coding.md` from SUSHI's output |
-| `scripts/translations.json` | et / ru / uk texts of the questionnaires (snapshot of the HelexEMR seeds, with provenance); `generate-fsh.py` writes them as R4 translation extensions |
+| `scripts/translations.json` | et / ru / uk texts of the questionnaires (snapshot of the HelexEMR seeds, with provenance); `generate-fsh.py` writes them as R5 translation extensions |
 
 The FSH and the two generated pages are produced by the scripts. Change the script, not the generated
 file, or the next run overwrites your edit:
@@ -45,3 +45,11 @@ Needs Docker only: `build.sh` runs SUSHI and the HL7 IG Publisher (pinned to 3.0
 - Translations: HelexEMR's `phq-9.translations.json`, `gad-7.translations.json` and `who-5.native.json`; the home
   page lists which are official sheets and which are HelexEMR wording.
 - LOINC 2.83; SNOMED CT International Edition 2026-11-01 (every SNOMED CT code checked active).
+
+## Licence
+
+© 2026 TalTech — Tallinn University of Technology, eMedLab. The guide's content is licensed under
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/): reuse, also commercial, must credit TalTech
+eMedLab (see `LICENSE` for the wording). The code in `scripts/` and `viewer/` is MIT (`LICENSE-CODE`).
+The questionnaires (Pfizer, WHO), LOINC, SNOMED CT and the HelexEMR packages in the viewer bundle keep
+their owners' terms.

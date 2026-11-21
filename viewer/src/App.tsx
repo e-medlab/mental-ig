@@ -300,7 +300,7 @@ export function App() {
                   />
                 )}
                 <Paragraph type="secondary" style={{ marginBottom: 0 }}>
-                  The score updates as you answer. Each answer is worth points (its “ordinal value” in FHIR); the total
+                  The score updates as you answer. Each answer is worth points (its “item weight” in FHIR); the total
                   is the sum.
                 </Paragraph>
                 <ContentLocaleProvider locale={lang}>

@@ -60,7 +60,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Вам було не дуже цікаво або подобалось чимось займатись"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -142,7 +143,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви почувалися сумними, пригніченими або безнадійними"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -224,7 +226,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Вам було важко засинати або не прокидатись, або Ви спали надто довго"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -306,7 +309,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви відчували втому або мало сил"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -388,7 +392,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "У Вас був поганий апетит, або Ви переїдали"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -470,7 +475,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви погано про себе думали — або Ви почувалися невдахою, або ж розчаровувались у собі, або думали, що підвели родину"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -552,7 +558,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Вам було важко зосередитись, наприклад, на читанні газети або перегляді телепередач"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -634,7 +641,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви рухались або розмовляли настільки повільно, що інші люди могли б це помітити? Або ж навпаки, Ви були настільки метушливі або неспокійні, що пересувались набагато більше, ніж зазвичай"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -716,7 +724,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "У Вас були думки, що Вам краще б померти, або Ви думали про те, щоб заподіяти собі яку-небудь шкоду"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -798,7 +807,8 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Якщо Ви відповіли позитивно на деякі пункти, оцініть, наскільки важко Вам було працювати, займатись домашніми справами або взаємодіяти з іншими людьми через ці проблеми?"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = false
 * item[=] insert RadioButtons
 * item[=] insert DifficultyAnswers
@@ -883,8 +893,9 @@ Description: "The nine-item depression screening questionnaire, coded with LOINC
 * item[=].text.extension[2].extension[1].valueString = "Загальний бал"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('44250-9' | '44255-8' | '44259-0' | '44254-1' | '44251-7' | '44258-2' | '44252-5' | '44253-3' | '44260-8')).answer.value.ordinal().sum()"
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%resource.item.where(linkId in ('44250-9' | '44255-8' | '44259-0' | '44254-1' | '44251-7' | '44258-2' | '44252-5' | '44253-3' | '44260-8')).answer.value.weight().sum()"
 
 Instance: gad-7
 InstanceOf: Questionnaire
@@ -949,7 +960,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви нервували, відчували тривогу або були дуже напружені"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1031,7 +1043,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви не могли зупинити або контролювати своє хвилювання"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1113,7 +1126,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви занадто хвилювались через різні речі"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1195,7 +1209,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Вам було важко розслабитись"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1277,7 +1292,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви були настільки неспокійні, що Вам було важко всидіти на одному місці"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1359,7 +1375,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Вам було легко дошкулити або роздратувати"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1441,7 +1458,8 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Ви відчували страх, неначе щось жахливе може статися"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -1526,8 +1544,9 @@ Description: "The seven-item anxiety screening questionnaire, coded with LOINC p
 * item[=].text.extension[2].extension[1].valueString = "Загальний бал"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('69725-0' | '68509-9' | '69733-4' | '69734-2' | '69735-9' | '69689-8' | '69736-7')).answer.value.ordinal().sum()"
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%resource.item.where(linkId in ('69725-0' | '68509-9' | '69733-4' | '69734-2' | '69735-9' | '69689-8' | '69736-7')).answer.value.weight().sum()"
 
 Instance: who-5
 InstanceOf: Questionnaire
@@ -1592,7 +1611,8 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Я почувався(лася) бадьорим(ою) і в доброму настрої"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -1704,7 +1724,8 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Я почувався(лася) спокійним(ою) і розслабленим(ою)"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -1816,7 +1837,8 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Я почувався(лася) активним(ою) і енергійним(ою)"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -1928,7 +1950,8 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Я прокидався(лася) свіжим(ою) і відпочилим(ою)"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -2040,7 +2063,8 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[0].valueCode = #uk
 * item[=].text.extension[2].extension[1].url = "content"
 * item[=].text.extension[2].extension[1].valueString = "Моє повсякденне життя було наповнене тим, що мене цікавить"
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -2154,8 +2178,9 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[1].valueString = "Сирий бал WHO-5"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = "%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()"
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.weight().sum()"
 * item[+].linkId = "who-5-index"
 * item[=].code[0] = $who5#who-5-index "WHO-5 well-being index"
 * item[=].code[+] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
@@ -2177,8 +2202,9 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * item[=].text.extension[2].extension[1].valueString = "Індекс WHO-5"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = "(%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.ordinal().sum()) * 4"
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = "(%resource.item.where(linkId in ('who5-1' | 'who5-2' | 'who5-3' | 'who5-4' | 'who5-5')).answer.value.weight().sum()) * 4"
 
 CodeSystem: Who5
 Id: who-5

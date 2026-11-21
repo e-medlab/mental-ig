@@ -3,8 +3,8 @@
 A small React app that shows the IG's three questionnaires (PHQ-9, GAD-7, WHO-5) as fillable forms,
 using the HelexEMR questionnaire renderer. You can prefill a form with one of the IG's example
 patients, watch the score and its interpretation update live, switch the language of the questions
-(English, Eesti, Русский, Українська — read from the Questionnaires' R4 `translation` extensions,
-falling back to English) and, on **Submit**, get the answers as a FHIR R4 `QuestionnaireResponse`
+(English, Eesti, Русский, Українська — read from the Questionnaires' R5 `translation` extensions,
+falling back to English) and, on **Submit**, get the answers as a FHIR R5 `QuestionnaireResponse`
 to copy or download.
 
 It is published with the IG at `https://e-medlab.github.io/mental-ig/viewer/` and reads the IG's

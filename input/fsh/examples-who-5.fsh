@@ -43,7 +43,7 @@ Description: "The WHO-5 assessment of Mari Maasikas on 2026-11-10. The answers a
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1417808008 "Assessment using World Health Organization-Five Well-Being Index questionnaire"
 * code.coding[+] = $who5#who-5 "WHO-5 Well-Being Index questionnaire"
 * subject = Reference(patient-mari)
-* performedDateTime = "2026-11-10T09:15:00+02:00"
+* occurrenceDateTime = "2026-11-10T09:15:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "WHO-5 raw score 20 of 25, well-being index 80 of 100: adequate well-being"
 
@@ -90,7 +90,7 @@ Description: "The WHO-5 assessment of Juhan Juurikas on 2026-11-12. The answers 
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1417808008 "Assessment using World Health Organization-Five Well-Being Index questionnaire"
 * code.coding[+] = $who5#who-5 "WHO-5 Well-Being Index questionnaire"
 * subject = Reference(patient-juhan)
-* performedDateTime = "2026-11-12T14:40:00+02:00"
+* occurrenceDateTime = "2026-11-12T14:40:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "WHO-5 raw score 11 of 25, well-being index 44 of 100: poor well-being; screened for depression with PHQ-9 at the same visit"
 
@@ -137,6 +137,6 @@ Description: "The WHO-5 assessment of Kati Karu on 2026-11-14. The answers are i
 * code.coding[0] = $SCT|http://snomed.info/sct/900000000000207008/version/20261101#1417808008 "Assessment using World Health Organization-Five Well-Being Index questionnaire"
 * code.coding[+] = $who5#who-5 "WHO-5 Well-Being Index questionnaire"
 * subject = Reference(patient-kati)
-* performedDateTime = "2026-11-14T11:05:00+02:00"
+* occurrenceDateTime = "2026-11-14T11:05:00+02:00"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = "WHO-5 raw score 5 of 25, well-being index 20 of 100: poor well-being; screened for depression with PHQ-9 at the same visit"

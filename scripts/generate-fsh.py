@@ -62,13 +62,13 @@ def band(score, bands):
 
 def sum_expr(link_ids):
     ids = " | ".join(f"'{i}'" for i in link_ids)
-    return f"%resource.item.where(linkId in ({ids})).answer.value.ordinal().sum()"
+    return f"%resource.item.where(linkId in ({ids})).answer.value.weight().sum()"
 
 
 # ---------------------------------------------------------------- aliases + rule sets
 (FSH / "aliases.fsh").write_text("""Alias: $LNC = http://loinc.org
 Alias: $SCT = http://snomed.info/sct
-Alias: $ordinal = http://hl7.org/fhir/StructureDefinition/ordinalValue
+Alias: $weight = http://hl7.org/fhir/StructureDefinition/itemWeight
 Alias: $calculated = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
 Alias: $itemControl = http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl
 Alias: $itemControlCS = http://hl7.org/fhir/questionnaire-item-control
@@ -80,14 +80,14 @@ rs = ["// Answer lists shared by the items of one instrument. `insert` copies th
 rs.append("RuleSet: FrequencyAnswers\n// LOINC answer list LL358-3, used by every PHQ-9 and GAD-7 symptom item\n")
 for i, (c, d, o) in enumerate(FREQ):
     rs.append(f"* answerOption[{'0' if i == 0 else '+'}].valueCoding = $LNC#{c} {q(d)}\n")
-    rs.append(f"* answerOption[=].extension[$ordinal].valueDecimal = {o}\n")
+    rs.append(f"* answerOption[=].extension[$weight].valueDecimal = {o}\n")
 rs.append("\nRuleSet: DifficultyAnswers\n// LOINC answer list LL359-1, PHQ-9's functional-difficulty item (not scored)\n")
 for i, (c, d) in enumerate(DIFF):
     rs.append(f"* answerOption[{'0' if i == 0 else '+'}].valueCoding = $LNC#{c} {q(d)}\n")
 rs.append("\nRuleSet: Who5Answers\n// The six WHO-5 response options; the code is the points the answer scores\n")
 for i, (c, d) in enumerate(WHO):
     rs.append(f"* answerOption[{'0' if i == 0 else '+'}].valueCoding = $who5answer#{c} {q(d)}\n")
-    rs.append(f"* answerOption[=].extension[$ordinal].valueDecimal = {c}\n")
+    rs.append(f"* answerOption[=].extension[$weight].valueDecimal = {c}\n")
 rs.append("""
 RuleSet: RadioButtons
 * extension[$itemControl].valueCodeableConcept = $itemControlCS#radio-button "Radio Button"
@@ -133,7 +133,8 @@ for c, t in PHQ:
     out.append(f"""* item[+].linkId = "{c}"
 * item[=].code = $LNC#{c}
 * item[=].text = {q(t)}
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -141,7 +142,8 @@ for c, t in PHQ:
 out.append(f"""* item[+].linkId = "{PHQ_DIFF[0]}"
 * item[=].code = $LNC#{PHQ_DIFF[0]}
 * item[=].text = {q(PHQ_DIFF[1])}
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = false
 * item[=] insert RadioButtons
 * item[=] insert DifficultyAnswers
@@ -151,8 +153,9 @@ out.append(f"""* item[+].linkId = "{PHQ_DIFF[0]}"
 * item[=].text = "PHQ-9 total score (0–27)"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = {q(sum_expr([c for c, _ in PHQ]))}
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = {q(sum_expr([c for c, _ in PHQ]))}
 
 Instance: gad-7
 InstanceOf: Questionnaire
@@ -174,7 +177,8 @@ for c, t in GAD:
     out.append(f"""* item[+].linkId = "{c}"
 * item[=].code = $LNC#{c}
 * item[=].text = {q(t)}
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert FrequencyAnswers
@@ -185,8 +189,9 @@ out.append(f"""* item[+].linkId = "gad-7-total"
 * item[=].text = "GAD-7 total score (0–21)"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = {q(sum_expr([c for c, _ in GAD]))}
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = {q(sum_expr([c for c, _ in GAD]))}
 
 Instance: who-5
 InstanceOf: Questionnaire
@@ -208,7 +213,8 @@ for c, t in WHO_ITEMS:
     out.append(f"""* item[+].linkId = "{c}"
 * item[=].code = $who5#{c} {q(t)}
 * item[=].text = {q(t)}
-* item[=].type = #choice
+* item[=].type = #coding
+* item[=].answerConstraint = #optionsOnly
 * item[=].required = true
 * item[=] insert RadioButtons
 * item[=] insert Who5Answers
@@ -219,16 +225,18 @@ out.append(f"""* item[+].linkId = "who-5-raw"
 * item[=].text = "WHO-5 raw score (0–25)"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = {q(who_raw)}
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = {q(who_raw)}
 * item[+].linkId = "who-5-index"
 * item[=].code[0] = $who5#who-5-index "WHO-5 well-being index"
 * item[=].code[+] = {SCT}1144665009 "World Health Organization-Five Well-Being Index questionnaire score"
 * item[=].text = "WHO-5 well-being index (0–100)"
 * item[=].type = #integer
 * item[=].readOnly = true
-* item[=].extension[$calculated].valueExpression.language = #text/fhirpath
-* item[=].extension[$calculated].valueExpression.expression = {q("(" + who_raw + ") * 4")}
+* item[=].extension[+].url = "http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression"
+* item[=].extension[=].valueExpression.language = #text/fhirpath
+* item[=].extension[=].valueExpression.expression = {q("(" + who_raw + ") * 4")}
 
 CodeSystem: Who5
 Id: who-5
@@ -462,7 +470,7 @@ Description: "The {TITLES[inst]} assessment of {p['name']} on {p['when']}. The a
 * status = #completed
 * code.coding[0] = {SCT}{code} {q(disp)}
 {loinc_line}* subject = Reference(patient-{key})
-* performedDateTime = "{stamp}"
+* occurrenceDateTime = "{stamp}"
 * performer.actor = Reference(practitioner-peeter)
 * outcome.text = {q(result)}
 """)

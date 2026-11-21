@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="mental-ig.css"/>
+
 The guide codes every concept in **both LOINC and SNOMED CT** wherever both systems have a code for it.
 Where a cell below says *none*, that system has no code for the concept (checked against LOINC 2.83 and the
 SNOMED CT International Edition of 1 November 2026, in which every code used here is active).
@@ -22,6 +24,7 @@ under `https://taltech.ee/fhir/mental/CodeSystem/`.
 | WHO-5 raw score (0–25) | WHO-5 `who-5-raw` | none |
 | WHO-5 index (0–100) | WHO-5 `who-5-index` | `1144665009` World Health Organization-Five Well-Being Index questionnaire score |
 | WHO-5 assessment (Procedure) | WHO-5 `who-5` (the questionnaire) | `1417808008` Assessment using World Health Organization-Five Well-Being Index questionnaire |
+{: .mh-table}
 
 LOINC has no procedure codes as such; the assessment procedures carry the LOINC panel (for WHO-5, the
 guide's own questionnaire code) next to the SNOMED CT procedure code, because it names the same assessment.
@@ -47,6 +50,7 @@ with the same codes as their `linkId`s (`who5-1` to `who5-5`).
 | `44260-8` | LOINC `44260-8` | Thoughts that you would be better off dead, or of hurting yourself in some way |
 | `69722-7` | LOINC `69722-7` | If you checked off any problems, how difficult have these problems made it for you to do your work, take care of things at home, or get along with other people? |
 | `phq-9-total` | LOINC `44261-6`, SNOMED CT `720433000` | PHQ-9 total score (0–27) |
+{: .mh-table}
 
 #### GAD-7
 
@@ -60,6 +64,7 @@ with the same codes as their `linkId`s (`who5-1` to `who5-5`).
 | `69689-8` | LOINC `69689-8` | Becoming easily annoyed or irritable |
 | `69736-7` | LOINC `69736-7` | Feeling afraid as if something awful might happen |
 | `gad-7-total` | LOINC `70274-6`, SNOMED CT `445455005` | GAD-7 total score (0–21) |
+{: .mh-table}
 
 #### WHO-5
 
@@ -72,6 +77,7 @@ with the same codes as their `linkId`s (`who5-1` to `who5-5`).
 | `who5-5` | WHO-5 (this guide) `who5-5` | My daily life has been filled with things that interest me |
 | `who-5-raw` | WHO-5 (this guide) `who-5-raw` | WHO-5 raw score (0–25) |
 | `who-5-index` | WHO-5 (this guide) `who-5-index`, SNOMED CT `1144665009` | WHO-5 well-being index (0–100) |
+{: .mh-table}
 
 ### Answers
 
@@ -85,6 +91,7 @@ PHQ-9 and GAD-7 symptom questions (LOINC answer list `LL358-3`):
 | LOINC `LA6569-3` | Several days | 1 |
 | LOINC `LA6570-1` | More than half the days | 2 |
 | LOINC `LA6571-9` | Nearly every day | 3 |
+{: .mh-table}
 
 PHQ-9 difficulty question `69722-7` (LOINC answer list `LL359-1`; not scored):
 
@@ -94,6 +101,7 @@ PHQ-9 difficulty question `69722-7` (LOINC answer list `LL359-1`; not scored):
 | LOINC `LA6573-5` | Somewhat difficult |
 | LOINC `LA6575-0` | Very difficult |
 | LOINC `LA6574-3` | Extremely difficult |
+{: .mh-table}
 
 WHO-5 statements, coded in this guide's own code system [WHO-5 response options](CodeSystem-who-5-answer.html); the code is the number of points:
 
@@ -105,3 +113,4 @@ WHO-5 statements, coded in this guide's own code system [WHO-5 response options]
 | `2` | Less than half of the time | 2 |
 | `1` | Some of the time | 1 |
 | `0` | At no time | 0 |
+{: .mh-table}

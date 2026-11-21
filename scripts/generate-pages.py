@@ -22,50 +22,73 @@ story = {"mari": "42, routine check-up, no concerns", "juhan": "55, low mood and
          "kati": "30, cannot cope at work or at home"}
 T = {"phq-9": "PHQ-9", "gad-7": "GAD-7", "who-5": "WHO-5"}
 
-out = ["""The guide contains three fictional patients who each completed PHQ-9, GAD-7 and WHO-5 at one visit to
-their family physician, [Dr. Peeter Pihlakas](Practitioner-practitioner-peeter.html). Together they cover
-the range of results: well, moderate symptoms, and severe symptoms that need action the same day.
+VIEWER = "https://e-medlab.github.io/mental-ig/viewer/"
+TONE = {"minimal": "mh-good", "adequate": "mh-good", "mild": "mh-mid", "moderate": "mh-mid",
+        "moderately severe": "mh-bad", "severe": "mh-bad", "poor": "mh-bad"}
+RANGE = {"phq-9": "of 27", "gad-7": "of 21", "who-5": "of 100"}
+STYLE = '<link rel="stylesheet" href="mental-ig.css"/>\n\n'
+
+
+def result_of(i, k):
+    qr = load(f"QuestionnaireResponse-{i}-response-{k}.json")
+    score = [it for it in qr["item"] if it["linkId"].endswith(("total", "index"))][0]["answer"][0]["valueInteger"]
+    outcome = load(f"Procedure-{i}-procedure-{k}.json")["outcome"]["text"]
+    label = outcome.split(": ", 1)[1].split(".")[0].split(";")[0]
+    tone = next(v for key, v in sorted(TONE.items(), key=lambda kv: -len(kv[0])) if label.startswith(key))
+    return score, label, tone, outcome
+
+
+out = [STYLE, """<p class="mh-section-lead">Three fictional patients each completed PHQ-9, GAD-7 and WHO-5 at one
+visit to their family physician, <a href="Practitioner-practitioner-peeter.html">Dr. Peeter Pihlakas</a>.
+Together they cover the range of results: well, moderate symptoms, and severe symptoms that need action
+the same day.</p>
+
+<div class="mh-grid">
+"""]
+for k, n in people.items():
+    rows = []
+    for i in T:
+        score, label, tone, _ = result_of(i, k)
+        rows.append(f'<div class="mh-score"><span><a href="QuestionnaireResponse-{i}-response-{k}.html">{T[i]}</a></span>'
+                    f'<span><span class="mh-num">{score}</span> <span class="mh-of">{RANGE[i]}</span> '
+                    f'<span class="mh-pill {tone}">{label}</span></span></div>')
+    out.append(f"""  <div class="mh-card">
+    <div class="mh-card-title"><a href="Patient-patient-{k}.html">{n}</a></div>
+    <p class="mh-meta">{story[k]}</p>
+    {"".join(rows)}
+    <p class="mh-links" style="margin-top:0.7em"><a href="{VIEWER}?q=phq-9&amp;r={k}">Open in the form viewer</a></p>
+  </div>
+""")
+out.append("""</div>
+
+<div class="mh-note mh-warn" markdown="1">
+**Kati Karu answered question 9 of PHQ-9** (thoughts of self-harm) with *More than half the days*. Any
+answer other than *Not at all* to that question needs a clinician's attention the same day, whatever the
+total score, and her PHQ-9 procedure records that this happened.
+</div>
 
 For each patient and questionnaire there are two resources: the **QuestionnaireResponse** with the
 patient's answers and calculated score, and the **Procedure** that records the assessment and its result
 in the patient's record. The response points to the procedure through its `partOf` field.
-
-### The patients
-
-| Patient | Story |
-|---|---|
-"""]
-for k, n in people.items():
-    out.append(f"| [{n}](Patient-patient-{k}.html) | {story[k]} |\n")
-out.append("\n### Results at a glance\n\n| Patient | PHQ-9 (0–27) | GAD-7 (0–21) | WHO-5 index (0–100) |\n|---|---|---|---|\n")
-for k, n in people.items():
-    cells = []
-    for i in T:
-        qr = load(f"QuestionnaireResponse-{i}-response-{k}.json")
-        score = [it for it in qr["item"] if it["linkId"].endswith(("total", "index"))][0]["answer"][0]["valueInteger"]
-        outcome = load(f"Procedure-{i}-procedure-{k}.json")["outcome"]["text"]
-        label = outcome.split(": ", 1)[1].split(".")[0].split(";")[0]
-        cells.append(f"**{score}** — {label}")
-    out.append(f"| {n} | " + " | ".join(cells) + " |\n")
-out.append("""
-Kati Karu answered question 9 of PHQ-9 (thoughts of self-harm) with *More than half the days*. Any answer
-other than *Not at all* to that question needs a clinician's attention the same day, whatever the total
-score, and her PHQ-9 procedure records that this happened.
 
 ### All examples
 
 """)
 for i in T:
     codings = load(f"Procedure-{i}-procedure-mari.json")["code"]["coding"]
-    names = " and ".join(f"{system_name(x['system'])} `{x['code']}` *{x['display']}*"
+    names = " and ".join(f"{system_name(x['system'])} <code>{x['code']}</code> <em>{x['display']}</em>"
                          for x in codings)
-    out.append(f"#### {T[i]}\n\nQuestionnaire: [{T[i]}](Questionnaire-{i}.html). Procedure code: {names}.\n\n"
-               "| Patient | Answers | Assessment | Result | Try it |\n|---|---|---|---|---|\n")
+    out.append(f'#### {T[i]}\n\n<p class="mh-meta">Questionnaire <a href="Questionnaire-{i}.html">{T[i]}</a>. '
+               f"Procedure code: {names}.</p>\n\n"
+               '<table class="mh-table">\n  <tr><th>Patient</th><th>Result</th><th>Answers</th><th>Assessment</th><th>Try it</th></tr>\n')
     for k, n in people.items():
-        outcome = load(f"Procedure-{i}-procedure-{k}.json")["outcome"]["text"]
-        out.append(f"| {n} | [QuestionnaireResponse](QuestionnaireResponse-{i}-response-{k}.html) | "
-                   f"[Procedure](Procedure-{i}-procedure-{k}.html) | {outcome} | [open in the form](https://e-medlab.github.io/mental-ig/viewer/?q={i}&r={k}) |\n")
-    out.append("\n")
+        score, label, tone, outcome = result_of(i, k)
+        out.append(f'  <tr><td><b>{n}</b></td><td><span class="mh-pill {tone}">{score} · {label}</span><br/>'
+                   f'<span class="mh-of">{outcome}</span></td>'
+                   f'<td><a href="QuestionnaireResponse-{i}-response-{k}.html">QuestionnaireResponse</a></td>'
+                   f'<td><a href="Procedure-{i}-procedure-{k}.html">Procedure</a></td>'
+                   f'<td><a href="{VIEWER}?q={i}&amp;r={k}">open in the form</a></td></tr>\n')
+    out.append("</table>\n\n")
 out.append("""### Reading one example step by step
 
 Open [PHQ-9 answered by Juhan Juurikas](QuestionnaireResponse-phq-9-response-juhan.html) and look at the
@@ -85,7 +108,7 @@ JSON tab:
 """)
 (P / "examples.md").write_text("".join(out), encoding="utf-8")
 
-c = ["""The guide codes every concept in **both LOINC and SNOMED CT** wherever both systems have a code for it.
+c = [STYLE, """The guide codes every concept in **both LOINC and SNOMED CT** wherever both systems have a code for it.
 Where a cell below says *none*, that system has no code for the concept (checked against LOINC 2.83 and the
 SNOMED CT International Edition of 1 November 2026, in which every code used here is active).
 
@@ -146,5 +169,18 @@ c.append("\nWHO-5 statements, coded in this guide's own code system "
 w = load("Questionnaire-who-5.json")
 for a in w["item"][1]["answerOption"]:
     c.append(f"| `{a['valueCoding']['code']}` | {a['valueCoding']['display']} | {int(a['extension'][0]['valueDecimal'])} |\n")
-(P / "coding.md").write_text("".join(c), encoding="utf-8")
+
+
+def style_tables(md):
+    """Give every markdown table the guide's table style (a kramdown block attribute after the table)."""
+    lines, outl = md.split("\n"), []
+    for n, line in enumerate(lines):
+        outl.append(line)
+        nxt = lines[n + 1] if n + 1 < len(lines) else ""
+        if line.startswith("|") and not nxt.startswith("|"):
+            outl.append("{: .mh-table}")
+    return "\n".join(outl)
+
+
+(P / "coding.md").write_text(style_tables("".join(c)), encoding="utf-8")
 print("ok")

@@ -88,6 +88,8 @@ export interface FhirQuestionnaireResponse {
   item?: FhirResponseItem[];
 }
 
+// R5 states an answer's points with itemWeight; ordinalValue is its R4 predecessor, still read.
+const ITEM_WEIGHT = 'http://hl7.org/fhir/StructureDefinition/itemWeight';
 const ORDINAL_VALUE = 'http://hl7.org/fhir/StructureDefinition/ordinalValue';
 const ITEM_CONTROL = 'http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl';
 const CALCULATED_EXPRESSION = 'http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression';
@@ -145,12 +147,12 @@ export function isScoreItem(it: FhirQuestionnaireItem): boolean {
 
 /**
  * The linkIds a sum-of-ordinals expression lists:
- * `%resource.item.where(linkId in ('a' | 'b' | …)).answer.value.ordinal().sum()`, optionally
+ * `%resource.item.where(linkId in ('a' | 'b' | …)).answer.value.weight().sum()` (R4: `ordinal()`), optionally
  * wrapped in parentheses and multiplied by a constant (WHO-5 index: `(…) * 4`).
  */
 function parseOrdinalSum(expression: string): { linkIds: string[]; factor: number } | undefined {
   const m =
-    /^\s*\(?\s*%resource\.item\.where\(linkId in \(([^)]*)\)\)\.answer\.value\.ordinal\(\)\.sum\(\)\s*\)?\s*(?:\*\s*(\d+(?:\.\d+)?))?\s*$/.exec(
+    /^\s*\(?\s*%resource\.item\.where\(linkId in \(([^)]*)\)\)\.answer\.value\.(?:weight|ordinal)\(\)\.sum\(\)\s*\)?\s*(?:\*\s*(\d+(?:\.\d+)?))?\s*$/.exec(
       expression,
     );
   if (!m) return undefined;
@@ -161,6 +163,7 @@ function parseOrdinalSum(expression: string): { linkIds: string[]; factor: numbe
 const NATIVE_TYPE: Record<string, string> = {
   display: 'Display',
   group: 'Group',
+  coding: 'Coding',
   choice: 'Coding',
   'open-choice': 'Coding',
   string: 'String',
@@ -239,7 +242,7 @@ export function toNative(q: FhirQuestionnaire): NativeQuestionnaire {
       if (it.code?.length) node.code = it.code.filter((c) => c.code).map((c) => ({ system: c.system ?? '', code: c.code!, display: c.display }));
       if (it.answerOption?.length) {
         node.answerOption = it.answerOption.map((o): AnswerOption => {
-          const ordinal = ext(o.extension, ORDINAL_VALUE);
+          const ordinal = ext(o.extension, ITEM_WEIGHT) ?? ext(o.extension, ORDINAL_VALUE);
           const opt: AnswerOption = {};
           if (o.valueCoding) {
             opt.valueCoding = {

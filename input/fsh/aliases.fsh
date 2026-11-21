@@ -1,6 +1,6 @@
 Alias: $LNC = http://loinc.org
 Alias: $SCT = http://snomed.info/sct
-Alias: $ordinal = http://hl7.org/fhir/StructureDefinition/ordinalValue
+Alias: $weight = http://hl7.org/fhir/StructureDefinition/itemWeight
 Alias: $calculated = http://hl7.org/fhir/uv/sdc/StructureDefinition/sdc-questionnaire-calculatedExpression
 Alias: $itemControl = http://hl7.org/fhir/StructureDefinition/questionnaire-itemControl
 Alias: $itemControlCS = http://hl7.org/fhir/questionnaire-item-control
