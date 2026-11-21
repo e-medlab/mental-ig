@@ -44,4 +44,5 @@ RuleSet: QuestionnaireHeader(id, title)
 * subjectType = #Patient
 * date = "2026-11-21"
 * publisher = "TalTech"
+* language = #en
 * jurisdiction = urn:iso:std:iso:3166#EE "Estonia"

@@ -17,6 +17,7 @@ assessment Procedure it belongs to, for every questionnaire (9 + 9). The landing
 | `input/pagecontent/` | `index.md` (home), `examples.md`, `coding.md` |
 | `scripts/generate-fsh.py` | writes every `input/fsh/*.fsh` file, so example scores are computed, not typed |
 | `scripts/generate-pages.py` | writes `examples.md` and `coding.md` from SUSHI's output |
+| `scripts/translations.json` | et / ru / uk texts of the questionnaires (snapshot of the HelexEMR seeds, with provenance); `generate-fsh.py` writes them as R4 translation extensions |
 
 The FSH and the two generated pages are produced by the scripts. Change the script, not the generated
 file, or the next run overwrites your edit:
@@ -41,4 +42,6 @@ Needs Docker only: `build.sh` runs SUSHI and the HL7 IG Publisher (pinned to 3.0
 
 - Item and answer wording: the PHQ-9 and GAD-7 sheets (Pfizer) and the WHO-5 2024 sheet
   (WHO/UCN/MSD/MHE/2024.1), as seeded in HelexEMR.
+- Translations: HelexEMR's `phq-9.translations.json`, `gad-7.translations.json` and `who-5.native.json`; the home
+  page lists which are official sheets and which are HelexEMR wording.
 - LOINC 2.83; SNOMED CT International Edition 2026-11-01 (every SNOMED CT code checked active).

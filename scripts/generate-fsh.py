@@ -2,6 +2,7 @@
 
 Generated once so that every example's totals are computed, not typed. usage: python3 scripts/generate-fsh.py .
 """
+import json
 import sys
 from pathlib import Path
 
@@ -100,6 +101,7 @@ RuleSet: QuestionnaireHeader(id, title)
 * subjectType = #Patient
 * date = "2026-11-21"
 * publisher = "TalTech"
+* language = #en
 * jurisdiction = urn:iso:std:iso:3166#EE "Estonia"
 """)
 (FSH / "rulesets.fsh").write_text("".join(rs), encoding="utf-8")
@@ -200,7 +202,7 @@ Description: "The five-item well-being questionnaire, coded with SNOMED CT 11447
 * code[+] = {SCT}1144752009 "World Health Organization-Five Well-Being Index questionnaire"
 * item[0].linkId = "who-5-intro"
 * item[=].type = #display
-* item[=].text = "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being. Over the last two weeks:"
+* item[=].text = "Please indicate for each of the five statements which is closest to how you have been feeling over the last two weeks. Notice that higher numbers mean better well-being."
 """)
 for c, t in WHO_ITEMS:
     out.append(f"""* item[+].linkId = "{c}"
@@ -278,7 +280,54 @@ Description: "All six WHO-5 response options."
 * ^experimental = true
 * include codes from system $who5answer
 """)
-(FSH / "questionnaires.fsh").write_text("".join(out), encoding="utf-8")
+TRANSLATIONS = json.loads((IG / "scripts" / "translations.json").read_text(encoding="utf-8"))
+TRANSLATION = "http://hl7.org/fhir/StructureDefinition/translation"
+LANGS = ("et", "ru", "uk")
+ANSWER_CODES = {"FrequencyAnswers": [c for c, _, _ in FREQ], "DifficultyAnswers": [c for c, _ in DIFF],
+                "Who5Answers": [c for c, _ in WHO]}
+
+
+def translation_rules(path, texts):
+    """R4 translation extensions on one primitive: one per language that has a text."""
+    rules, i = [], 0
+    for lang in LANGS:
+        text = texts.get(lang)
+        if not text:
+            continue
+        rules += [f'* {path}.extension[{i}].url = "{TRANSLATION}"',
+                  f'* {path}.extension[{i}].extension[0].url = "lang"',
+                  f"* {path}.extension[{i}].extension[0].valueCode = #{lang}",
+                  f'* {path}.extension[{i}].extension[1].url = "content"',
+                  f"* {path}.extension[{i}].extension[1].valueString = {q(text)}"]
+        i += 1
+    return rules
+
+
+def add_translations(fsh):
+    """Insert et/ru/uk translations after each title, item text and answer list (scripts/translations.json)."""
+    lines, current, link_id = [], None, None
+    for line in fsh.split("\n"):
+        lines.append(line)
+        if line.startswith("Instance: "):
+            current = line.split(": ", 1)[1].strip()
+            current = current if current in TRANSLATIONS else None
+        if current is None:
+            continue
+        tr = TRANSLATIONS[current]
+        if line.startswith("* insert QuestionnaireHeader("):
+            lines += translation_rules("title", {l: tr[l]["title"] for l in LANGS})
+        elif ".linkId = " in line and line.startswith("* item["):
+            link_id = line.split('"')[1]
+        elif line.startswith("* item[=].text = ") and link_id:
+            lines += translation_rules("item[=].text", {l: tr[l]["items"].get(link_id) for l in LANGS})
+        elif line.startswith("* item[=] insert ") and line.split()[-1] in ANSWER_CODES:
+            for k, code in enumerate(ANSWER_CODES[line.split()[-1]]):
+                lines += translation_rules(f"item[=].answerOption[{k}].valueCoding.display",
+                                           {l: tr[l]["answers"].get(code) for l in LANGS})
+    return "\n".join(lines)
+
+
+(FSH / "questionnaires.fsh").write_text(add_translations("".join(out)), encoding="utf-8")
 
 # ---------------------------------------------------------------- people
 (FSH / "examples-people.fsh").write_text("""// Fictional people. Mari Maasikas is the Estonian placeholder name, like John Doe in English.

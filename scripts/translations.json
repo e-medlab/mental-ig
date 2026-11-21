@@ -1,0 +1,228 @@
+{
+  "_source": "HelexEMR doc questionnaire seeds (helex-solutions/emr-repo, modules/doc/backend/src/main/resources/doc/questionnaires), snapshot 2026-11-21",
+  "_provenance": {
+    "phq-9": {
+      "et": "Pfizer/Mapi official sheet 'Estonian for Estonia' (13 Jan 2020), typo jatkamisega → jätkamisega fixed; the answer scale uses HelexEMR's GAD-7 wording so both instruments read the same",
+      "ru": "Pfizer/Mapi official sheet 'Russian for Estonia' (03 Feb 2020)",
+      "uk": "Pfizer/Mapi official sheet 'Ukrainian for Ukraine'"
+    },
+    "gad-7": {
+      "et": "HelexEMR's own wording (there is no official Estonian GAD-7)",
+      "ru": "Pfizer/Mapi official sheet 'Russian for Russia'",
+      "uk": "Pfizer/Mapi official sheet 'Ukrainian for Ukraine'"
+    },
+    "who-5": {
+      "et": "HelexEMR working draft, not a WHO translation",
+      "ru": "HelexEMR working draft, not a WHO translation",
+      "uk": "HelexEMR working draft, not a WHO translation"
+    }
+  },
+  "phq-9": {
+    "et": {
+      "title": "Patsiendi terviseküsimustik-9 (PHQ-9)",
+      "items": {
+        "phq-9-intro": "Kui tihti on teid viimase 2 nädala jooksul vaevanud mõned alltoodud probleemidest?",
+        "44250-9": "Pole huvi või rõõmutunnet ühestki tegevusest",
+        "44255-8": "Tunned end rusutuna, masendatuna või lootusetuna",
+        "44259-0": "Hädas uinumisega või magamise jätkamisega või üleliigse magamisega",
+        "44254-1": "Tunned väsimust või energiapuudust",
+        "44251-7": "Halb söögiisu või ülesöömine",
+        "44258-2": "Halb enesetunne - tunned et oled läbi kukkunud või et oled ennast või oma pere alt vedanud",
+        "44252-5": "Keskendumisprobleemid, nt ajalehe lugemisel või teleri vaatamisel",
+        "44253-3": "Liigud või räägid nii aeglaselt, et teised inimesed võiksid seda märgata? Või vastupidi - oled nii rahutu või püsimatu, et liigud palju rohkem kui tavaliselt.",
+        "44260-8": "Mõtted, et parem oleks surnud olla või vigastada ennast mingil moel",
+        "69722-7": "Kui olete märkinud mingeid probleeme, siis mil määral on need probleemid teie tööd, kodus asjadega tegelemist, teiste inimestega läbi saamist raskemaks teinud?",
+        "phq-9-total": "Koguskoor"
+      },
+      "answers": {
+        "LA6568-5": "Üldse mitte",
+        "LA6569-3": "Mõnel päeval",
+        "LA6570-1": "Rohkem, kui pooltel päevadel",
+        "LA6571-9": "Peaaegu iga päev",
+        "LA6572-7": "Üldse pole raske",
+        "LA6573-5": "On natuke raske",
+        "LA6575-0": "Väga raske",
+        "LA6574-3": "Äärmiselt raske"
+      }
+    },
+    "ru": {
+      "title": "Опросник по состоянию здоровья-9 (PHQ-9)",
+      "items": {
+        "phq-9-intro": "Как часто за последние 2 недели Вас беспокоили следующие проблемы?",
+        "44250-9": "Вам не хотелось ничего делать",
+        "44255-8": "У Вас было плохое настроение, Вы были подавлены или испытывали чувство безысходности",
+        "44259-0": "Вам было трудно заснуть, у Вас был прерывистый сон, или Вы слишком много спали",
+        "44254-1": "Вы были утомлены, или у Вас было мало сил",
+        "44251-7": "У Вас был плохой аппетит, или Вы переедали",
+        "44258-2": "Вы плохо о себе думали – Вы считали себя неудачником (неудачницей), были в себе разочарованы, или считали, что разочаровали свою семью",
+        "44252-5": "Вам было трудно сосредоточиться (например, на чтении газеты или на просмотре телепередач)",
+        "44253-3": "Вы двигались или говорили настолько медленно, что окружающие это замечали? Или, наоборот, Вы были настолько суетливы или взбудоражены, что двигались гораздо больше обычного",
+        "44260-8": "Вас посещали мысли о том, что Вам лучше было бы умереть, или о том, чтобы причинить себе какой-нибудь вред",
+        "69722-7": "Если Вы положительно ответили на какие-нибудь пункты, то оцените, насколько трудно Вам было работать, заниматься домашними делами или общаться с людьми из-за этих проблем?",
+        "phq-9-total": "Общий балл"
+      },
+      "answers": {
+        "LA6568-5": "Ни разу",
+        "LA6569-3": "Несколько дней",
+        "LA6570-1": "Более половины дней",
+        "LA6571-9": "Почти каждый день",
+        "LA6572-7": "Совсем не трудно",
+        "LA6573-5": "Немного трудно",
+        "LA6575-0": "Очень трудно",
+        "LA6574-3": "Чрезвычайно трудно"
+      }
+    },
+    "uk": {
+      "title": "Опитувальник про стан здоров'я (PHQ-9)",
+      "items": {
+        "phq-9-intro": "Як часто за останні 2 тижні Вас турбували будь-які з наступних проблем?",
+        "44250-9": "Вам було не дуже цікаво або подобалось чимось займатись",
+        "44255-8": "Ви почувалися сумними, пригніченими або безнадійними",
+        "44259-0": "Вам було важко засинати або не прокидатись, або Ви спали надто довго",
+        "44254-1": "Ви відчували втому або мало сил",
+        "44251-7": "У Вас був поганий апетит, або Ви переїдали",
+        "44258-2": "Ви погано про себе думали — або Ви почувалися невдахою, або ж розчаровувались у собі, або думали, що підвели родину",
+        "44252-5": "Вам було важко зосередитись, наприклад, на читанні газети або перегляді телепередач",
+        "44253-3": "Ви рухались або розмовляли настільки повільно, що інші люди могли б це помітити? Або ж навпаки, Ви були настільки метушливі або неспокійні, що пересувались набагато більше, ніж зазвичай",
+        "44260-8": "У Вас були думки, що Вам краще б померти, або Ви думали про те, щоб заподіяти собі яку-небудь шкоду",
+        "69722-7": "Якщо Ви відповіли позитивно на деякі пункти, оцініть, наскільки важко Вам було працювати, займатись домашніми справами або взаємодіяти з іншими людьми через ці проблеми?"
+      },
+      "answers": {
+        "LA6568-5": "Зовсім не турбували",
+        "LA6569-3": "Декілька днів",
+        "LA6570-1": "Більш половини всіх днів",
+        "LA6571-9": "Майже щоденно",
+        "LA6572-7": "Зовсім не важко",
+        "LA6573-5": "Дещо важко",
+        "LA6575-0": "Дуже важко",
+        "LA6574-3": "Надзвичайно важко"
+      }
+    }
+  },
+  "gad-7": {
+    "et": {
+      "title": "Generaliseerunud ärevushäire skaala (GAD-7)",
+      "items": {
+        "gad-7-intro": "Kui tihti on teid viimase 2 nädala jooksul vaevanud mõned alltoodud probleemidest?",
+        "69725-0": "Närvilisus, ärevus või pinges olek",
+        "68509-9": "Suutmatus muretsemist peatada või kontrollida",
+        "69733-4": "Liigne muretsemine erinevate asjade pärast",
+        "69734-2": "Raskused lõõgastumisel",
+        "69735-9": "Nii suur rahutus, et on raske paigal istuda",
+        "69689-8": "Kerge ärritumine või tujukus",
+        "69736-7": "Hirmutunne, nagu juhtuks midagi kohutavat",
+        "gad-7-total": "Koguskoor"
+      },
+      "answers": {
+        "LA6568-5": "Üldse mitte",
+        "LA6569-3": "Mõnel päeval",
+        "LA6570-1": "Rohkem, kui pooltel päevadel",
+        "LA6571-9": "Peaaegu iga päev"
+      }
+    },
+    "ru": {
+      "title": "GAD-7",
+      "items": {
+        "gad-7-intro": "Как часто за последние 2 недели Вас беспокоили следующие проблемы?",
+        "69725-0": "Вы нервничали, тревожились или испытывали сильный стресс",
+        "68509-9": "Вы были неспособны успокоиться или контролировать свое волнение",
+        "69733-4": "Вы слишком сильно волновались по различным поводам",
+        "69734-2": "Вам было трудно расслабиться",
+        "69735-9": "Вы были настолько суетливы, что Вам было тяжело усидеть на месте",
+        "69689-8": "Вы легко злились или раздражались",
+        "69736-7": "Вы испытывали страх, словно должно произойти нечто ужасное",
+        "gad-7-total": "Общий балл"
+      },
+      "answers": {
+        "LA6568-5": "Ни разу",
+        "LA6569-3": "Несколько дней",
+        "LA6570-1": "Более половины дней",
+        "LA6571-9": "Почти каждый день"
+      }
+    },
+    "uk": {
+      "title": "GAD-7",
+      "items": {
+        "gad-7-intro": "Як часто за останні 2 тижні Вас турбували будь-які з наступних проблем?",
+        "69725-0": "Ви нервували, відчували тривогу або були дуже напружені",
+        "68509-9": "Ви не могли зупинити або контролювати своє хвилювання",
+        "69733-4": "Ви занадто хвилювались через різні речі",
+        "69734-2": "Вам було важко розслабитись",
+        "69735-9": "Ви були настільки неспокійні, що Вам було важко всидіти на одному місці",
+        "69689-8": "Вам було легко дошкулити або роздратувати",
+        "69736-7": "Ви відчували страх, неначе щось жахливе може статися"
+      },
+      "answers": {
+        "LA6568-5": "Зовсім не турбували",
+        "LA6569-3": "Декілька днів",
+        "LA6570-1": "Більш половини всіх днів",
+        "LA6571-9": "Майже щоденно"
+      }
+    }
+  },
+  "who-5": {
+    "et": {
+      "title": "WHO-5 heaoluindeks",
+      "items": {
+        "who-5-intro": "Palun märkige iga viie väite juures, mis kirjeldab kõige paremini, kuidas olete end viimase kahe nädala jooksul tundnud. Pange tähele, et suurem number tähendab paremat heaolu.",
+        "who5-1": "Olen olnud rõõmsameelne ja heas tujus",
+        "who5-2": "Olen tundnud end rahuliku ja pingevabana",
+        "who5-3": "Olen tundnud end aktiivse ja energilisena",
+        "who5-4": "Olen ärganud värske ja väljapuhanuna",
+        "who5-5": "Minu igapäevaelu on olnud täis asju, mis mind huvitavad",
+        "who-5-raw": "WHO-5 toorskoor",
+        "who-5-index": "WHO-5 heaoluindeks"
+      },
+      "answers": {
+        "5": "Kogu aeg",
+        "4": "Enamiku ajast",
+        "3": "Rohkem kui poole ajast",
+        "2": "Vähem kui poole ajast",
+        "1": "Mõnikord",
+        "0": "Mitte kunagi"
+      }
+    },
+    "ru": {
+      "title": "Индекс благополучия ВОЗ-5 (WHO-5)",
+      "items": {
+        "who-5-intro": "Пожалуйста, для каждого из пяти утверждений отметьте то, что ближе всего к тому, как вы себя чувствовали последние две недели. Обратите внимание: чем больше число, тем лучше самочувствие.",
+        "who5-1": "Я чувствовал(а) себя бодрым(ой) и в хорошем настроении",
+        "who5-2": "Я чувствовал(а) себя спокойным(ой) и расслабленным(ой)",
+        "who5-3": "Я чувствовал(а) себя активным(ой) и энергичным(ой)",
+        "who5-4": "Я просыпался(лась) свежим(ей) и отдохнувшим(ей)",
+        "who5-5": "Моя повседневная жизнь была наполнена тем, что мне интересно",
+        "who-5-raw": "Сырой балл WHO-5",
+        "who-5-index": "Индекс WHO-5"
+      },
+      "answers": {
+        "5": "Всё время",
+        "4": "Большую часть времени",
+        "3": "Более половины времени",
+        "2": "Менее половины времени",
+        "1": "Иногда",
+        "0": "Никогда"
+      }
+    },
+    "uk": {
+      "title": "Індекс благополуччя ВООЗ-5 (WHO-5)",
+      "items": {
+        "who-5-intro": "Будь ласка, для кожного з п'яти тверджень позначте те, що найкраще описує, як ви почувалися останні два тижні. Зверніть увагу: що більше число, то краще самопочуття.",
+        "who5-1": "Я почувався(лася) бадьорим(ою) і в доброму настрої",
+        "who5-2": "Я почувався(лася) спокійним(ою) і розслабленим(ою)",
+        "who5-3": "Я почувався(лася) активним(ою) і енергійним(ою)",
+        "who5-4": "Я прокидався(лася) свіжим(ою) і відпочилим(ою)",
+        "who5-5": "Моє повсякденне життя було наповнене тим, що мене цікавить",
+        "who-5-raw": "Сирий бал WHO-5",
+        "who-5-index": "Індекс WHO-5"
+      },
+      "answers": {
+        "5": "Весь час",
+        "4": "Більшу частину часу",
+        "3": "Більше половини часу",
+        "2": "Менше половини часу",
+        "1": "Іноді",
+        "0": "Ніколи"
+      }
+    }
+  }
+}

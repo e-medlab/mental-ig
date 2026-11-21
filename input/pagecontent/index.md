@@ -113,5 +113,21 @@ for discussion. It is not yet approved for clinical use.
   covered by the national licence.
 - The rest of this guide is published under CC BY 4.0.
 
-The questionnaires are in English, in the wording of the original instruments. This version includes no
-translations.
+### Languages
+
+The questionnaires are written in English, in the wording of the original instruments, with **Estonian
+(`et`), Russian (`ru`) and Ukrainian (`uk`)** translations of the title, every question and every answer.
+A translation sits next to the English text in FHIR's standard
+[translation extension](https://hl7.org/fhir/R4/extension-translation.html), so a form tool that supports
+it can show the questionnaire in the patient's language, and one that doesn't still shows English. The
+translations are those used in HelexEMR:
+
+| Questionnaire | Estonian | Russian | Ukrainian |
+|---|---|---|---|
+| PHQ-9 | official Pfizer sheet *Estonian for Estonia* (2020), one typo corrected; the answer scale uses the GAD-7 Estonian wording so both questionnaires read the same | official Pfizer sheet *Russian for Estonia* (2020) | official Pfizer sheet *Ukrainian for Ukraine* |
+| GAD-7 | HelexEMR's own wording: there is no official Estonian GAD-7 | official Pfizer sheet *Russian for Russia* | official Pfizer sheet *Ukrainian for Ukraine* |
+| WHO-5 | HelexEMR working draft | HelexEMR working draft | HelexEMR working draft |
+
+The WHO-5 translations are not WHO translations, and WHO is not responsible for their content or
+accuracy. The Estonian GAD-7 and the WHO-5 translations have not been validated; they need review before
+clinical use.
